@@ -7,13 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
 20.times do
 
-  challanges = Challenge.new(
+  challenges = Challenge.new(
     title: Faker::Name.title,
     description: Faker::Lorem.paragraph,
     rules: Faker::Lorem.sentence,
-    picture: Faker::Avatar.image
+    picture: Faker::Avatar.image,
+    id_user_owner: 1
   )
-  challanges.save!
+  challenges.save!
 end
