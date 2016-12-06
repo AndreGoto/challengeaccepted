@@ -1,0 +1,2 @@
+class ChallengeMessagesController < ApplicationController
+end

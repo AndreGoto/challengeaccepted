@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+20.times do
+
+  challenges = Challenge.new(
+    title: Faker::Name.title,
+    description: Faker::Lorem.paragraph,
+    rules: Faker::Lorem.sentence,
+    picture: Faker::Avatar.image,
+    id_user_owner: 1
+  )
+  challenges.save!
+end

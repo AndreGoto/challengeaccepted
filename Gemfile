@@ -8,6 +8,8 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
+gem 'cloudinary', '1.1.0'
+gem 'carrierwave'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -21,7 +23,7 @@ gem "pundit"
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
-
+  gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'

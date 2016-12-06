@@ -36,18 +36,21 @@
   flex: 0 1 auto;
   cursor: pointer;
   padding: 10px 20px;
-  background: white;
+  // background: white;
 
 }
 
 @media screen and (max-width: 990px) {
-  .navbar-wagon-item {border-radius: 50%;}
+  .navbar-wagon-item {
+    border-radius: 50%;
+    background: white;}
 }
 
 /* Navbar standard link */
 .navbar-wagon-link {
   color: #616668;
   font-size: 14px;
+  background: white;
 }
 .navbar-wagon-link:hover {
   color: #da552f;
