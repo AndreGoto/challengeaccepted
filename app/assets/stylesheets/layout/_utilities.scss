@@ -3,6 +3,10 @@
  * These are examples of utilities classes
  * Feel free to change them and create your own
  * ------------------------------------- */
+// Typography
+h1, .h1 {
+    font-size: 36px;
+}
 
 // Paddings
 .padded {
@@ -23,4 +27,19 @@
 .bg-dark-blue {
   background: #3b5998;
 }
+.bg-main-blue {
+  background-color: $main-blue;
+}
 
+.bg-main-blue h1, .bg-main-blue .h1,
+.bg-main-blue label {
+  color: white;
+}
+
+.bg-main-blue .form-control {
+  border: none;
+}
+
+.bg-main-blue input.form-control {
+  height: 45px;
+}
