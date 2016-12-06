@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+20.times do
+
+  challanges =Challange.new(
+    description: Faker::Lorem.paragraph,
+    rules: Faker::Lorem.sentence,
+    category: category_list.sample, #Faker::Lorem.words,
+    picture: Faker::Avatar.image
+  )
+  challanges.save!
+end
