@@ -9,10 +9,10 @@
 
 20.times do
 
-  challanges =Challange.new(
+  challanges = Challenge.new(
+    title: Faker::Name.title,
     description: Faker::Lorem.paragraph,
     rules: Faker::Lorem.sentence,
-    category: category_list.sample, #Faker::Lorem.words,
     picture: Faker::Avatar.image
   )
   challanges.save!
