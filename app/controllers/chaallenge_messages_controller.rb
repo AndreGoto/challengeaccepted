@@ -1,0 +1,2 @@
+class ChaallengeMessagesController < ApplicationController
+end
