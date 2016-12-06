@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <% if current_user.id == @challenge.user_id %>
+      <h1>Edit your challenge</h1>
+      <%= render 'form' %>
+    <% else %>
+      <p>Only the owner of this challenge can edit it.</p>
+    <% end %>
+    </div>
+  </div>
+</div>

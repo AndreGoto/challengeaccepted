@@ -1,4 +1,6 @@
 class ChallengesController < ApplicationController
+  # skip_before_action :authenticate_user!, only: [ :index ]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   def new
     @challenge = Challenge.new
@@ -14,17 +16,28 @@ class ChallengesController < ApplicationController
     end
   end
 
-  def challenge_params
-    params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache)
+  def show
   end
 
-  def show
+  def edit
+  end
+
+  def update
+    if @challenge.update(challenge_params)
+      flash[:notice] = "There you go! Your challenge is now updated."
+      redirect_to challenge_path(@challenge)
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def set_challenge
     @challenge = Challenge.find(params[:id])
   end
 
-
-  def challange_params
-    params.require(:job).permit(:title, :description, :rule, :picture, :start_date, :end_date)
+  def challenge_params
+    params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache)
   end
-
 end

@@ -1,5 +1,6 @@
 .banner {
   background-size: cover;
+  // height: 500px;
   color:white;
   text-align: center;
   display:flex;
@@ -22,13 +23,13 @@
   font-family: raleway;
   font-weight: bold;
   font-size: 50px;
-
+  padding-bottom: 290px;
   //display: flex;
   //align-items: center;
   //justify-content: center;
   //position: relative;
-  //height: 500px;
-  //padding-bottom: 250px;
+  // height: 500px;
+
 }
 
 .banner h1 {
@@ -42,7 +43,6 @@
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 20px;
 }
-
 
 @media screen and (max-width: 600px) {
   .banner{
