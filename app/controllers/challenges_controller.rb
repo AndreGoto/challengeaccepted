@@ -1,13 +1,9 @@
 class ChallengesController < ApplicationController
+  # skip_before_action :authenticate_user!, only: [ :index ]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   def new
-<<<<<<< HEAD
-    @challenges = Challenge.new
-    authorize @challenge
-=======
     @challenge = Challenge.new
->>>>>>> 19a621d37d73fdb0a4cc3d63d33bd7526b91580c
   end
 
   def create
@@ -20,17 +16,7 @@ class ChallengesController < ApplicationController
     end
   end
 
-  def challenge_params
-    params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache)
-  end
-
   def show
-    @challenge = Challenge.find(params[:id])
-  end
-
-
-  def challange_params
-    params.require(:job).permit(:title, :description, :rule, :picture, :start_date, :end_date)
   end
 
   def edit
@@ -49,10 +35,9 @@ class ChallengesController < ApplicationController
 
   def set_challenge
     @challenge = Challenge.find(params[:id])
-    authorize @challenge
   end
 
-  def chalenge_params
-    params.require(:challenge).permit(:title, :description, :picture, :rules, :start_date, :end_date)
+  def challenge_params
+    params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache)
   end
 end
