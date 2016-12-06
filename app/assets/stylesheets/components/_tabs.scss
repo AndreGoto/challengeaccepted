@@ -1,0 +1,22 @@
+.tabs {
+  display: flex;
+  padding: 6px 10px 0 10px;
+}
+
+.tab {
+  background: #83C9DB;
+  text-align: center;
+  padding: 15px 0;
+  color: white;
+}
+
+.tab:first-child {
+  border-radius: 10px 0 0 0;
+}
+.tab:last-child {
+  border-radius: 0 10px 0 0;
+}
+
+.tab.active {
+  background: $petro-blue;
+}

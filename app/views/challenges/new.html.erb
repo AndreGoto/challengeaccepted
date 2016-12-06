@@ -3,7 +3,6 @@
   <div class="padded">
     <%= simple_form_for(@challenge) do |f| %>
       <%= f.error_notification %>
-
       <%= f.input :title, placeholder: 'Ex: Ice Bucket challenge' %>
       <%= f.input :description, placeholder: 'Within 24 hours of being challenged, participants have to record a video of themselves in continuous footage...', input_html: {rows: 3} %>
       <%= f.input :rules, placeholder: 'Within 24 hours of being challenged, participants have to record a video of themselves in continuous footage...', input_html: {rows: 3} %>
