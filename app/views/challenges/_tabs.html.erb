@@ -11,12 +11,3 @@
   bbbbbb
   <%#= render 'form' %>
 </div>
-
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(".tab").click(function() {
-      $(".tab").removeClass( "active" );
-      $(this).addClass( "active" );
-    });
-  <% end %>
-<% end %>
