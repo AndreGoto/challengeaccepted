@@ -1,0 +1,14 @@
+<div class="container">
+  <%= simple_form_for(@challenges) do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :rules %>
+    <%= f.input :picture %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+
+    <%= f.button :submit %>
+  <% end %>
+</div>
