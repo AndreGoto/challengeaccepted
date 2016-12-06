@@ -18,4 +18,13 @@ class ChallengesController < ApplicationController
     params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache)
   end
 
+  def show
+    @challenge = Challenge.find(params[:id])
+  end
+
+
+  def challange_params
+    params.require(:job).permit(:title, :description, :rule, :picture, :start_date, :end_date)
+  end
+
 end
