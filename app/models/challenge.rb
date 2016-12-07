@@ -3,4 +3,8 @@ class Challenge < ApplicationRecord
   has_many :users, through: :members
 
   mount_uploader :picture, PhotoUploader
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
 end
