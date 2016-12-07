@@ -1,22 +1,30 @@
 class ChallengesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [ :index ]
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+
+  def index
+    # @challenges = Challenge.all
+    @challenges = policy_scope(Challenge)
+  end
+
+  def show
+  end
 
   def new
     @challenge = Challenge.new
+    authorize @challenge
   end
 
   def create
     @challenge = Challenge.new(challenge_params)
     @challenge.owner = current_user
+    authorize @challenge
+
     if @challenge.save
       redirect_to challenge_path(@challenge)
     else
       render :new
     end
-  end
-
-  def show
   end
 
   def edit
@@ -31,10 +39,16 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def destroy
+    @challenge.destroy
+    redirect_to challenges_path
+  end
+
   private
 
   def set_challenge
     @challenge = Challenge.find(params[:id])
+    authorize @challenge
   end
 
   def challenge_params

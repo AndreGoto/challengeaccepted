@@ -1,7 +1,7 @@
 class ChallengePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.all
     end
   end
 
@@ -10,13 +10,11 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
-    # - record: the restaurant passed to the `authorize` method in controller
-    # - user:   the `current_user` signed in with Devise.
+    record.owner == user
   end
 
   def destroy?
-    record.user == user
+    record.owner == user
   end
 
 end
