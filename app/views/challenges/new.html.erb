@@ -8,8 +8,8 @@
       <%= f.input :rules, placeholder: 'Within 24 hours of being challenged, participants have to record a video of themselves in continuous footage...', input_html: {rows: 3} %>
       <%= f.input :picture %>
       <%= f.input :picture_cache, as: :hidden %>
-      <%= f.input :start_date %>
-      <%= f.input :end_date %>
+      <%= f.input :start_date, input_html: {class:'datepicker'} %>
+      <%= f.input :end_date, input_html: {class:'datepicker'} %>
       <%= f.button :submit %>
     <% end %>
   </div>
