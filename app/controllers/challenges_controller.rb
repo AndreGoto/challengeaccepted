@@ -51,7 +51,7 @@ class ChallengesController < ApplicationController
   end
 
   def send_invite
-    InviteMailer.welcome(current_user,params[:guest_email]).deliver_now
+    InviteMailer.welcome(current_user,params[:guest_email],params[:id]).deliver_now
     redirect_to challenge_path
   end
 
