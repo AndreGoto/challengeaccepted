@@ -7,7 +7,19 @@ class ChallengesController < ApplicationController
     @challenges = policy_scope(Challenge)
   end
 
+  def invite
+
+  end
+
+  def send_invite
+
+  end
+
+
   def show
+
+
+
   end
 
   def new
