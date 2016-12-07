@@ -17,4 +17,11 @@ class ChallengePolicy < ApplicationPolicy
     record.owner == user
   end
 
+  def invite?
+    record.owner == user
+  end
+
+  def send_invite?
+    record.owner == user
+  end
 end
