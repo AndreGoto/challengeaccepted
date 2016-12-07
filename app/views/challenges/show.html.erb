@@ -3,7 +3,8 @@
     <div class="title_show text-center">
      <h1><%= @challenge.title %></h1>
     </div>
-    <a class="btn btn-primary btn-lg">Status</a>
+    <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-primary btn-lg"  %>
+    <!--<a class="btn btn-primary btn-lg">Status</a>-->
   </div>
 </div>
 <div class="container">
