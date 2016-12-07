@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :invite, :send_invite]
 
   def index
     # @challenges = Challenge.all
@@ -46,11 +46,13 @@ class ChallengesController < ApplicationController
   end
 
   def invite
+    authorize @challenge
     #this action generates the file
   end
 
   def send_invite
-    InviteMailer.welcome(current_user.name,params[:guest_email]).deliver_now
+    InviteMailer.welcome(current_user.email,params[:guest_email]).deliver_now
+    redirect_to challenge_path
   end
 
   private
