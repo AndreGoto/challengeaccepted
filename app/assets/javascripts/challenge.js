@@ -3,4 +3,6 @@ $( document ).ready(function() {
     $(".tab").removeClass( "active" );
     $(this).addClass( "active" );
   });
+
+  $('.datepicker').datepicker();
 });
