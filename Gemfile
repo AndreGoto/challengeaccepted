@@ -20,6 +20,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 gem "pundit"
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'binding_of_caller'
