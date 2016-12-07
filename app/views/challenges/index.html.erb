@@ -1,0 +1,22 @@
+<div class="cotainer">
+  <h1>Challenges</h1>
+  <table class="table">
+    <% @challenges.each do |challenge| %>
+      <tr>
+        <td> <%= challenge.title %> </td>
+        <td> <%= challenge.owner.email %> </td>
+        <td> <%=link_to 'Show', challenge_path(challenge) %> </td>
+        <td>
+          <% if policy(challenge).edit? %>
+            <%=link_to 'Edit', edit_challenge_path(challenge) %>
+          <% end %>
+        </td>
+        <td>
+          <% if policy(challenge).destroy? %>
+            <%=link_to 'Delete', challenge_path(challenge), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

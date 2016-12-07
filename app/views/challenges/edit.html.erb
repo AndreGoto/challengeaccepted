@@ -1,12 +1,16 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-    <% if current_user.id == @challenge.user_id %>
-      <h1>Edit your challenge</h1>
-      <%= render 'form' %>
-    <% else %>
-      <p>Only the owner of this challenge can edit it.</p>
+  <h1>Edit</h1>
+  <div class="padded">
+    <%= simple_form_for(@challenge) do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :title, placeholder: 'Ex: Ice Bucket challenge' %>
+      <%= f.input :description, placeholder: 'Within 24 hours of being challenged, participants have to record a video of themselves in continuous footage...', input_html: {rows: 3} %>
+      <%= f.input :rules, placeholder: 'Within 24 hours of being challenged, participants have to record a video of themselves in continuous footage...', input_html: {rows: 3} %>
+      <%= f.input :picture %>
+      <%= f.input :picture_cache, as: :hidden %>
+      <%= f.input :start_date %>
+      <%= f.input :end_date %>
+      <%= f.button :submit %>
     <% end %>
-    </div>
   </div>
 </div>

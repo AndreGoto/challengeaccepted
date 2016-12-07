@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :challenges, only: [:show, :new, :edit]
+  resources :challenges
   root to: 'pages#home'
 end
