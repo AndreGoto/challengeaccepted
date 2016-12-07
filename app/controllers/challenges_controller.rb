@@ -7,18 +7,8 @@ class ChallengesController < ApplicationController
     @challenges = policy_scope(Challenge)
   end
 
-  def invite
-
-  end
-
-  def send_invite
-
-  end
-
-
   def show
     @challenge = Challenge.find(params[:id])
-
   end
 
   def new
@@ -55,6 +45,14 @@ class ChallengesController < ApplicationController
     redirect_to challenges_path
   end
 
+  def invite
+    #this action generates the file
+  end
+
+  def send_invite
+    InviteMailer.welcome(current_user.name,params[:guest_email]).deliver_now
+  end
+
   private
 
   def set_challenge
@@ -63,6 +61,6 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache)
+    params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
   end
 end

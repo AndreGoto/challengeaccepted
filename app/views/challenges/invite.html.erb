@@ -1,5 +1,19 @@
-<%= simple_form_for(@challenge) do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :title, placeholder: 'Digit your email here!' %>
-  <%= f.button :submit %>
+<%#= simple_form_for @email,
+    :url => url_for(:action => 'send_invite', :controller => 'challenges'),
+    :method => 'post' do |f| %>
+  <%#= f.error_notification %>
+  <%#= f.input , placeholder: "Write here your best friend's email to be invited!" %>
+  <%#= f.button :submit %>
+  <%# end %>
+
+
+<%#= form_tag(send_invite_challenge) do %>
+  <%#= text_field_tag(:idNumber) %>
+<%# end %>
+
+
+<%= form_tag({controller: "challenges", action: "send_invite"}, method: "post") do %>
+    <%= label_tag(:guest_email, "Puts your best friend's email here to invite!") %>
+    <%= text_field_tag(:guest_email) %>
+    <%= submit_tag("Submit") %>
 <% end %>
