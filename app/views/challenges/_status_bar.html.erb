@@ -1,0 +1,29 @@
+<div class="wrapper-progress-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success active" role="progressbar" aria-valuenow="<%= @status_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @status_percentage %>%;">
+            <span class="sr-only"><%= @status_percentage %>% Complete</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <ul class="list-inline progress-bar-info">
+          <li>
+            <strong><%= @status_days_to_finish %></strong> <br>
+            Days to finish
+          </li>
+          <li>
+            <strong>??</strong> <br>
+            Members
+          </li>
+          <li class="date">
+            <strong><%= (@challenge.start_date).strftime("%d/%m/%y") %></strong> <br>
+            Started date
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
