@@ -1,10 +1,15 @@
+<% if @challenge.picture.nil? %>
 <div class="banner banner-show" style="background-image: url('<%= cl_image_path @challenge.picture %>')">
+<% else %>
+<div class="banner banner-show">
+<% end %>
   <div class="shadow"></div>
   <div class="banner-content">
     <h1><%= @challenge.title %></h1>
     <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-primary btn-lg"  %>
   </div>
 </div>
+<%= render 'status_bar' %>
 <div class="container">
   <%= render 'tabs' %>
 </div>
