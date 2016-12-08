@@ -1,4 +1,8 @@
+<% if @challenge.picture.nil? %>
 <div class="banner banner-show" style="background-image: url('<%= cl_image_path @challenge.picture %>')">
+<% else %>
+<div class="banner banner-show">
+<% end %>
   <div class="shadow"></div>
   <div class="banner-content">
     <h1><%= @challenge.title %></h1>
