@@ -10,9 +10,11 @@ class ChallengesController < ApplicationController
   def show
     @challenge_message = ChallengeMessage.new
     @members = Member.where(challenge_id: @challenge.id)
+    user_challenge_messages = []
     @members.each do |member|
-      @challenge_messages = ChallengeMessage.where(member_id: member.id)
+      user_challenge_messages << ChallengeMessage.where(member_id: member.id)
     end
+    @challenge_messages = user_challenge_messages.flatten.sort_by { |k| k[:created_at] }
   end
 
   def new
