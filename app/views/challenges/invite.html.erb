@@ -5,14 +5,37 @@
     <%#= submit_tag("Submit") %>
 <%# end %>
 
+<!--
 
-<%= simple_form_for 'send_invite_challenge_path', :method => "GET" do |f| %>
-  <%= f.input :guest_email %>
-  <h3> Tasks </h3>
-  <% #tasks %>
-  <%= f.simple_fields_for :tasks do |task| %>
-    <%= render 'task_fields', f: task %>
-    <%= link_to_add_association 'add task', f, :tasks %>
-    <%= f.submit %>
-  <%end%>
+<%#= form_tag({controller: "challenges", action: "send_invite"}, method: "post") do %>
+  <div class='field'>
+    <%#= f.label :description %>
+    <br>
+    <%#= f.text_field :description %>
+  </div>
+  <h3>Invites</h3>
+    <%#= f.fields_for :invites do |invite| %>
+      <%#= render 'invite_fields', f: invite %>
+    <div class='links'>
+      <%#= link_to_add_association 'add invite', f, :invites %>
+    </div>
+    <%#= f.submit %>
+  <%#end%>
+<%#end%>
+
+-->
+
+
+<%#= simple_form_for @challenge, path: 'send_invite_path' do |f| %>
+
+<%#= simple_form_for @challenge do |f| %>
+<%= simple_form_for @challenge do |f| %>
+  <%= f.simple_fields_for :invites do |invite| %>
+    <%= render 'invite_fields', f: invite %>
+    <div class='links'>
+      <%= link_to_add_association 'add invite', f, :invites %>
+    </div>
+  <<%end%></%end%>
+  <%= f.submit %>
 <%end%>
+

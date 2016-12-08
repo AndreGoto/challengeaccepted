@@ -47,12 +47,14 @@ class ChallengesController < ApplicationController
 
   def invite
     authorize @challenge
+    @challenge.invites.build
     #this action generates the file
   end
 
   def send_invite
-    InviteMailer.welcome(current_user,params[:guest_email],params[:id]).deliver_now
-    redirect_to challenge_path
+    raise
+    InviteMailer.welcome(@challenge, @challenge.invites).deliver_now
+    #redirect_to challenge_url(challenge.id)
   end
 
   private
@@ -64,6 +66,6 @@ class ChallengesController < ApplicationController
 
   def challenge_params
     #params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
-     params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, tasks_attributes: [:guest_email])
+     params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, invites_attributes: [:guest_email])
   end
 end
