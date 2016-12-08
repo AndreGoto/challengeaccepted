@@ -13,6 +13,9 @@ h1, .h1 {
   padding-top: 5em;
   padding-bottom: 5em;
 }
+.form-space-bottom {
+  margin-bottom: 15px;
+}
 
 // Backgrounds
 .bg-black {
@@ -36,10 +39,20 @@ h1, .h1 {
   color: white;
 }
 
-.bg-main-blue .form-control {
+.bg-main-blue .form-control,
+.bg-main-blue .input-group-addon {
   border: none;
 }
 
 .bg-main-blue input.form-control {
   height: 45px;
+}
+
+.bg-main-blue .input-group-addon {
+  color: $dark-gray;
+}
+
+// bottom-links
+.bottom-links {
+  margin-top: 15px;
 }

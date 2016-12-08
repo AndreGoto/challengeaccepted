@@ -4,5 +4,10 @@ $( document ).ready(function() {
     $(this).addClass( "active" );
   });
 
-  $('.datepicker').datepicker();
+  $('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    autoclose: true,
+    todayHighlight: true
+  });
+
 });
