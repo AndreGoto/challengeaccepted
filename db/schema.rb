@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207213915) do
+ActiveRecord::Schema.define(version: 20161208140726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "challengemessages", force: :cascade do |t|
+  create_table "challenge_messages", force: :cascade do |t|
     t.string   "message"
     t.integer  "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_challengemessages_on_member_id", using: :btree
+    t.index ["member_id"], name: "index_challenge_messages_on_member_id", using: :btree
   end
 
   create_table "challenges", force: :cascade do |t|
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20161207213915) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "challengemessages", "members"
+  add_foreign_key "challenge_messages", "members"
   add_foreign_key "members", "challenges"
   add_foreign_key "members", "users"
 end

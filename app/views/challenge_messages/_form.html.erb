@@ -1,0 +1,4 @@
+<%= simple_form_for(@challenge_message,url: challenge_challenge_messages_path(@challenge.id), remote: false) do |form| %>
+  <%= form.input :message %>
+  <%= form.button :submit %>
+<% end %>

@@ -1,13 +1,13 @@
+
+
 <div class="row tabs">
-  <input type="button" id="about"    class="tab col-xs-6 col-sm-3 active" value="About">
-  <input type="button" id="cooments" class="tab col-xs-6 col-sm-3" value="Comments">
+  <input type="button" id="about"    class="tab col-xs-6 col-sm-3" value="about">
+  <input type="button" id="cooments" class="tab col-xs-6 col-sm-3 active" value="messages">
 </div>
 
-<div class="tab-item">
-  aaaaaa
-  <%#= render 'form' %>
+<div class="tab-about tab-invisible">
+  <%= render 'about' %>
 </div>
-<div class="tab-item">
-  bbbbbb
-  <%#= render 'form' %>
+<div class="tab-messages">
+  <%= render 'messages' %>
 </div>

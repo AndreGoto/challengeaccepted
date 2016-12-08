@@ -1,0 +1,8 @@
+<% if @challenge_messages.errors.any? %>
+  $('#new_message').html("<%= j render 'challenge_messages/form', challenge: @challenge, challengemessages: @challenge_message %>");
+<% else %>
+  var new_review = $("<%= j render 'challenge_messages/show', challengemessages: @challenge_message %>").hide();
+  $('#messages').append(new_review);
+  new_review.slideDown();
+  $('#new_message').html("<%= j render 'challenge_messages/form', challenge: @challenge, challengemessages: ChallengeMessage.new %>");
+<% end %>
