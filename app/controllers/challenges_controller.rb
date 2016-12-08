@@ -8,6 +8,11 @@ class ChallengesController < ApplicationController
   end
 
   def show
+    @challenge_message = ChallengeMessage.new
+    @members = Member.where(challenge_id: @challenge.id)
+    @members.each do |member|
+      @challenge_messages = ChallengeMessage.where(member_id: member.id)
+    end
   end
 
   def new

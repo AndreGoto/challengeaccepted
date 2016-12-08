@@ -1,0 +1,12 @@
+<div id="messages">
+  <% if @challenge_messages.blank? %>
+    Be the first to leave a review for <%= @challenge.title %>
+  <% else %>
+    <% @challenge_messages.each do |message| %>
+      <%= render 'challenge_messages/show', message: message %>
+    <% end %>
+  <% end %>
+</div>
+
+<%#= render 'challenge_messages/form', challenge: @challenge, challenge_message: @challenge_message %>
+<%= render 'challenge_messages/form' %>
