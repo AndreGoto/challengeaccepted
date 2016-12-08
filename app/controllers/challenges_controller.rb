@@ -26,9 +26,15 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.new(challenge_params)
     @challenge.owner = current_user
     authorize @challenge
-
     if @challenge.save
-      redirect_to challenge_path(@challenge)
+      members = Member.new
+      members.user_id = current_user.id
+      members.challenge_id = @challenge.id
+      if members.save
+        redirect_to challenge_path(@challenge)
+      else
+        render :new
+      end
     else
       render :new
     end

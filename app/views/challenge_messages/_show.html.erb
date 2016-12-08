@@ -1,7 +1,7 @@
 <% if message.member_id == current_user.id %>
   <p class="text-right">
-    <strong style="color: green"><%= Member.find(message.member_id).user.name %></strong>
     <%= message.message %>
+    <strong style="color: green"><%= Member.find(message.member_id).user.name %></strong>
   </p>
 <% else %>
   <p class="text-left">
