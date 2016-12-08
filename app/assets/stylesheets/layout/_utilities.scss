@@ -8,6 +8,21 @@ h1, .h1 {
     font-size: 36px;
 }
 
+// Generic
+html, body {
+  height: 100%;
+}
+
+.page-wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 160px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
 // Paddings
 .padded {
   padding-top: 5em;
