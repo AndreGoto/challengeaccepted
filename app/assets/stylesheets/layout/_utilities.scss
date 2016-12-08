@@ -8,10 +8,28 @@ h1, .h1 {
     font-size: 36px;
 }
 
+// Generic
+html, body {
+  height: 100%;
+}
+
+.page-wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 160px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
 // Paddings
 .padded {
   padding-top: 5em;
   padding-bottom: 5em;
+}
+.form-space-bottom {
+  margin-bottom: 15px;
 }
 
 // Backgrounds
@@ -36,10 +54,20 @@ h1, .h1 {
   color: white;
 }
 
-.bg-main-blue .form-control {
+.bg-main-blue .form-control,
+.bg-main-blue .input-group-addon {
   border: none;
 }
 
 .bg-main-blue input.form-control {
   height: 45px;
+}
+
+.bg-main-blue .input-group-addon {
+  color: $dark-gray;
+}
+
+// bottom-links
+.bottom-links {
+  margin-top: 15px;
 }

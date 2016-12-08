@@ -10,6 +10,19 @@
   justify-content: space-between;
 }
 
+/* Logo */
+.navbar-wagon-brand {
+  font-family: $header-font;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.navbar-wagon-brand:hover {
+  text-decoration: none;
+  color: $main-blue;
+}
+
 /* Optional class to fix the navbar on top */
 .navbar-wagon-fixed {
   position: fixed;
@@ -19,16 +32,12 @@
   width: 100%;
 }
 
-/* Navbar logo */
-.navbar-wagon-brand img {
-  width: 50px;
-}
-
 /* Navbar right section (with form, links, button) */
 .navbar-wagon-right {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: white;
 }
 
 /* Navbar item */

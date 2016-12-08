@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :invite, :send_invite]
 
   def index
     # @challenges = Challenge.all
@@ -49,6 +49,16 @@ class ChallengesController < ApplicationController
     redirect_to challenges_path
   end
 
+  def invite
+    authorize @challenge
+    #this action generates the file
+  end
+
+  def send_invite
+    InviteMailer.welcome(current_user,params[:guest_email],params[:id]).deliver_now
+    redirect_to challenge_path
+  end
+
   private
 
   def set_challenge
@@ -57,6 +67,6 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache)
+    params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
   end
 end

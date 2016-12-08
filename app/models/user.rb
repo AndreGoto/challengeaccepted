@@ -1,11 +1,15 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  mount_uploader :picture, PhotoUploader
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   devise :omniauthable, omniauth_providers: [:facebook]
 
   has_many :challenges, through: :members
+
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice(:provider, :uid)
@@ -17,10 +21,12 @@ class User < ApplicationRecord
     user = User.where(provider: auth.provider, uid: auth.uid).first
     user ||= User.where(email: auth.info.email).first # User did a regular sign up in the past.
     if user
+      user_params[:name] = auth.info.first_name + " " + auth.info.last_name
       user.update(user_params)
     else
       user = User.new(user_params)
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
+      user.name = user.first_name + " " + user.last_name
       user.save
     end
 

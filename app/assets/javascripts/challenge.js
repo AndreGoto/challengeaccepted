@@ -8,5 +8,10 @@ $( document ).ready(function() {
     $(".tab-"+$(this).val()).removeClass("tab-invisible");
   });
 
-  $('.datepicker').datepicker();
+  $('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    autoclose: true,
+    todayHighlight: true
+  });
+
 });

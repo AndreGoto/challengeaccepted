@@ -1,9 +1,8 @@
-<div class="banner banner-show">
+<div class="banner banner-show" style="background-image: url('<%= cl_image_path @challenge.picture %>')">
+  <div class="shadow"></div>
   <div class="banner-content">
-    <div class="title_show text-center">
-     <h1><%= @challenge.title %></h1>
-    </div>
-    <a class="btn btn-primary btn-lg">Status</a>
+    <h1><%= @challenge.title %></h1>
+    <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-primary btn-lg"  %>
   </div>
 </div>
 <div class="container">
