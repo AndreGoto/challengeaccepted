@@ -6,9 +6,9 @@ class MembersController < ApplicationController
     authorize @member
     if @member.save
       flash[:notice] = "You're new member"
-      redirect_to challenge_path(challenge)
+      redirect_to challenge_path(params[:challenge_id])
     else
-      redirect_to challenge_path(challenge)
+      redirect_to challenge_path(params[:challenge_id])
     end
   end
 end
