@@ -23,7 +23,6 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def send_invite?
-    #record.owner == user
-    #record.owner.
+    Challenge.find(record.id).users.find(user.id) == user
   end
 end
