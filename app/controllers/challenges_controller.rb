@@ -8,6 +8,12 @@ class ChallengesController < ApplicationController
   end
 
   def show
+    @challenge.end_date = 0 if @challenge.end_date.nil?
+    status_total = (@challenge.end_date - @challenge.start_date).to_i
+    status_until_now = (Date.today - @challenge.start_date).to_i
+    @status_percentage = (status_until_now * 100)/status_total
+    @status_days_to_finish = status_total - status_until_now
+
     @challenge_message = ChallengeMessage.new
     @members = Member.where(challenge_id: @challenge.id)
     @members.each do |member|
@@ -51,12 +57,13 @@ class ChallengesController < ApplicationController
 
   def invite
     authorize @challenge
+    @challenge.invites.build
     #this action generates the file
   end
 
   def send_invite
-    InviteMailer.welcome(current_user,params[:guest_email],params[:id]).deliver_now
-    redirect_to challenge_path
+    InviteMailer.welcome(@challenge, @challenge.invites).deliver_now
+    #redirect_to challenge_url(challenge.id)
   end
 
   private
@@ -67,6 +74,7 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
+    #params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
+     params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, invites_attributes: [:guest_email])
   end
 end
