@@ -1,6 +1,6 @@
 class Invite < ApplicationRecord
   after_save :send_invite
-  before_save :invites
+  # before_save :invites
   belongs_to :challenge
 
   private
@@ -10,9 +10,9 @@ class Invite < ApplicationRecord
     #redirect_to challenge_url(challenge.id)
   end
 
-  def invites
-    raise
-    guest_email
-  end
+  # def invites
+  #   raise
+  #   guest_email
+  # end
 
 end
