@@ -1,6 +1,9 @@
-<table class="table">
-  <tr><td class="text-center"><strong>About</strong></td></tr>
-  <tr><td><%= @challenge.description %></td></tr>
-  <tr><td class="text-center"><strong>Rules</strong></td></tr>
-  <tr><td><%= @challenge.rules %></td></tr>
-</table>
+<div class='container'>
+  <div class="row">
+    <div class="col-xs-12 col-sm-9 col-sm-offset-1">
+      <p class="text-center"><%= @challenge.description %></p>
+      <p class="text-center"><strong>Rules:</strong></p>
+      <p class="text-center"><%= @challenge.rules %></p>
+    </div>
+  </div>
+</div>

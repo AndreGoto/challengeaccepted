@@ -1,0 +1,13 @@
+<div class="wrapper-action-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <% if @challenge.users.where(id: current_user.id).empty?%>
+          <%= link_to "Accept Challenge", challenge_members_path(@challenge), method: :post, class: 'btn btn-lg btn-success btn-block'%>
+        <% else %>
+          <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-lg btn-success btn-block"  %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
