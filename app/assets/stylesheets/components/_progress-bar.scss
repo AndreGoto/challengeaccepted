@@ -1,0 +1,30 @@
+.wrapper-progress-bar {
+  background-color: white;
+  padding: 35px 0 20px;
+}
+
+.progress-bar-info {
+  background-color: transparent;
+}
+
+.progress-bar-info li {
+  border-left: 1px solid $main-blue;
+  margin-right: 10px;
+  padding-left: 10px;
+  font-size: 13px;
+}
+
+.progress-bar-info li strong {
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.progress-bar-info li.date strong {
+  font-size: 18px;
+}
+
+// bootstrap
+.progress {
+  background-color: #dddddd;
+  margin: 14px 0;
+}
