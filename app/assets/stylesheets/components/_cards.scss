@@ -6,6 +6,8 @@
   margin-bottom: 30px;
   background-color: $petro-blue;
   position: relative;
+  border-radius: 5px;
+  overflow: hidden;
   .card-picture {
     overflow: hidden;
     height: 150px;
@@ -45,7 +47,7 @@
   }
   .card-desc {
     font-size: 0.8em;
-    height: 62px;
+    // height: 62px;
     overflow: hidden;
     margin: 5px 0;
     color: white;
@@ -62,4 +64,10 @@
    left: 0;
    overflow: hidden;
    text-indent: -9999px;
+ }
+
+ .first-letter {
+  color: $petro-blue;
+  font-size: 35px;
+  font-weight: light;
  }
