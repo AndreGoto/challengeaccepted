@@ -1,5 +1,3 @@
-
-
 <div class="row tabs">
   <input type="button" id="about"    class="tab col-xs-6 col-sm-3 col-sm-offset-3" value="about">
   <input type="button" id="cooments" class="tab col-xs-6 col-sm-3 active" value="messages">
@@ -9,5 +7,9 @@
   <%= render 'about' %>
 </div>
 <div class="tab-messages">
-  <%= render 'messages' %>
+  <% unless @challenge.users.where(id: current_user.id).empty? %>
+    <%= render 'messages' %>
+  <% else %>
+    <p>Not allowed</p>
+  <% end %>
 </div>

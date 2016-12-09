@@ -6,16 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+10.times do |i|
+  u = User.create(email: "teste#{i}@teste.com",
+                  name: Faker::Name.name,
+                  password: '123123',
+                  password_confirmation: '123123')
 
+  5.times do
+    Challenge.create(title: Faker::Name.title,
+               description: Faker::Lorem.paragraph,
+                     rules: Faker::Lorem.sentence,
+                   picture: Faker::Avatar.image,
+                     owner: u)
+  end
+end
 
-20.times do
+10.times do |i|
+  m = Member.create(user_id: User.find(i+1),
+              challenge_id: Challenge.find(i+1))
 
-  challenges = Challenge.new(
-    title: Faker::Name.title,
-    description: Faker::Lorem.paragraph,
-    rules: Faker::Lorem.sentence,
-    picture: Faker::Avatar.image,
-    id_user_owner: 1
-  )
-  challenges.save!
+  3.times do
+    ChallengeMessage.create(message: Faker::Lorem.paragraph,
+                             member: m)
+  end
 end
