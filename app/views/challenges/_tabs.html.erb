@@ -7,6 +7,9 @@
 <div class="tab-about tab-invisible">
   <%= render 'about' %>
 </div>
+<div class="tab-members tab-invisible">
+  <%= render 'members' %>
+</div>
 <div class="tab-message">
   <% unless @challenge.users.where(id: current_user.id).empty? %>
     <%= render 'messages' %>
@@ -14,6 +17,4 @@
     <p>Not allowed</p>
   <% end %>
 </div>
-<div class="tab-members tab-invisible">
-  <%= render 'members' %>
-</div>
+
