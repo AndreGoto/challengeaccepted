@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208140726) do
+ActiveRecord::Schema.define(version: 20161208142020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 20161208140726) do
     t.integer  "id_user_owner"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.integer  "challenge_id"
+    t.string   "guest_email"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["challenge_id"], name: "index_invites_on_challenge_id", using: :btree
   end
 
   create_table "members", force: :cascade do |t|
@@ -72,6 +80,7 @@ ActiveRecord::Schema.define(version: 20161208140726) do
   end
 
   add_foreign_key "challenge_messages", "members"
+  add_foreign_key "invites", "challenges"
   add_foreign_key "members", "challenges"
   add_foreign_key "members", "users"
 end
