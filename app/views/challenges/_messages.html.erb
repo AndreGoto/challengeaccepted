@@ -1,6 +1,6 @@
 <div id="messages">
   <% if @challenge_messages.blank? %>
-    Be the first to leave a review for <%= @challenge.title %>
+    The trash talk in <%= @challenge.title %> starts here.
   <% else %>
     <% @challenge_messages.each do |message| %>
       <%= render 'challenge_messages/show', message: message %>
