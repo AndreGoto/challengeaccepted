@@ -18,7 +18,8 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def invite?
-    raise
+    # only the member user from that specific challenge can invite
+    Challenge.find(record.id).users.find(user.id) == user
   end
 
   def send_invite?
