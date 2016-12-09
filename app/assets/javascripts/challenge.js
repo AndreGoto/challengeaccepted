@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
     $(".tab-about").addClass("tab-invisible");
     $(".tab-messages").addClass("tab-invisible");
-    $(".tab-members").addClass("tab-invisible");
+    $(".tab-member").addClass("tab-invisible");
     $(".tab-"+$(this).val()).removeClass("tab-invisible");
   });
 
@@ -15,7 +15,7 @@ $( document ).ready(function() {
     todayHighlight: true
   });
 
-  var objDiv = $("#message")[0];
+  var objDiv = $("#messages")[0];
   objDiv.scrollTop = objDiv.scrollHeight;
 
   var objDiv2 = $(".bg-main-blue")[0];
