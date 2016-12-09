@@ -1,11 +1,17 @@
-<%= simple_form_for @challenge do |f| %>
-  <%= f.simple_fields_for :invites, @challenge.invites.last do |invite| %>
-  <%#= f.simple_fields_for :invites do |invite| %>
-    <%= render 'invite_fields', f: invite %>
-    <div class='links'>
-      <%= link_to_add_association 'add invite', f, :invites %>
-    </div>
-  <%end%>
-  <%= f.submit %>
-<%end%>
 
+<div class="container">
+
+  <%= simple_form_for @challenge do |f| %>
+    <%= f.simple_fields_for :invites, @challenge.invites.last do |invite| %>
+    <%#= f.simple_fields_for :invites do |invite| %>
+      <%= render 'invite_fields', f: invite %>
+      <div class='links'>
+        <%#= link_to_add_association 'add invite', f, :invites %>
+      </div>
+    <%end%>
+    <%= link_to_add_association 'add invite', f, :invites, :class => 'btn btn-primary' %>
+    <%#= link_to_remove_association "remove invite", f %>
+    <%= f.button :submit,  'Send invite', :class => 'btn btn-primary'  %>
+  <%end%>
+
+</div>
