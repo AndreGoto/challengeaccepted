@@ -1,12 +1,16 @@
 $( document ).ready(function() {
   $(".tab").click(function() {
-    $(".tab").removeClass( "active" );
+    $("#about").removeClass( "active" );
+    $("#message").removeClass( "active" );
+    $("#members").removeClass( "active" );
+
     $(this).addClass( "active" );
 
     $(".tab-about").addClass("tab-invisible");
-    $(".tab-messages").addClass("tab-invisible");
-    $(".tab-member").addClass("tab-invisible");
-    $(".tab-"+$(this).val()).removeClass("tab-invisible");
+    $(".tab-message").addClass("tab-invisible");
+    $(".tab-members").addClass("tab-invisible");
+    $(".tab-"+this.id).removeClass("tab-invisible");
+
   });
 
   $('.datepicker').datepicker({
