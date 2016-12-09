@@ -11,7 +11,7 @@ gem 'redis'
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave'
 gem "mini_magick"
-
+gem "cocoon"
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'

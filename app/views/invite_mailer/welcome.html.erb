@@ -1,9 +1,9 @@
 <h1>Hi!</h1>
 
 <p>
-  Your friend <strong><%= @sender.first_name %></strong> are inviting you to our great Challenge!!!!
+  Your friend are inviting you to our great Challenge called <strong><%= @challenge.title %></strong>!!!!
 
-  Click <%= link_to 'Here', challenge_url(@challenge_id) %> to participate right now!
+  Click <%= link_to 'Here', challenge_url(@challenge.id) %> to participate right now!
 
   Regargs.
 </p>
