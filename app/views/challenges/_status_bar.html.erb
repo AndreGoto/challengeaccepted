@@ -8,17 +8,17 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 text-center">
         <ul class="list-inline progress-bar-info">
-          <li>
+          <li class="text-left">
             <strong><%= @status_days_to_finish %></strong> <br>
             Days to finish
           </li>
-          <li>
-            <strong>??</strong> <br>
-            Members
+          <li class="text-left">
+            <strong><%= @challenge.members.count %></strong> <br>
+            Member(s)
           </li>
-          <li class="date">
+          <li class="date text-left">
             <strong><%= (@challenge.start_date).strftime("%d/%m/%y") %></strong> <br>
             Started date
           </li>

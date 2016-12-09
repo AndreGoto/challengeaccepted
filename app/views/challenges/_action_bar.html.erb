@@ -1,0 +1,17 @@
+<div class="wrapper-action-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <% if (@challenge.invites.where(guest_email: current_user.email)).empty? && current_user.id != @challenge.owner.id %>
+          <p>You're not invited... :( <a href="#">Request your invitation</a></p>
+        <% else %>
+          <% if @challenge.users.where(id: current_user.id).empty?%>
+            <%= link_to "Accept Challenge", challenge_members_path(@challenge), method: :post, class: 'btn btn-lg btn-success btn-block'%>
+          <% else %>
+            <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-lg btn-success btn-block"  %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,7 +15,7 @@ $( document ).ready(function() {
     todayHighlight: true
   });
 
-  var objDiv = $("#messages")[0];
+  var objDiv = $("#message")[0];
   objDiv.scrollTop = objDiv.scrollHeight;
 
   var objDiv2 = $(".bg-main-blue")[0];

@@ -6,9 +6,9 @@
   <div class="shadow"></div>
   <div class="banner-content">
     <h1><%= @challenge.title %></h1>
-    <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-primary btn-lg"  %>
   </div>
 </div>
+<%= render 'action_bar' %>
 <%= render 'status_bar' %>
 <div class="container">
   <%= render 'tabs' %>
