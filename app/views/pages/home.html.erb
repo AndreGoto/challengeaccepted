@@ -11,4 +11,41 @@
   </div>
 </div>
 
+<div class='container home-text'>
+  <h2 class='home-title'><span class='first-letter'>S</span>taff favorites</h2>
+</div>
+
+<!-- <div>
+  challenges.each do ||
+</div> -->
+
+
+<div class="wrapper-cards">
+  <div class="container">
+    <div class="row">
+      <% @challenges.each do |challenge| %>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card">
+            <div class="card-picture">
+              <% if challenge.picture %>
+                <%= cl_image_tag(challenge.picture, width: 345, height: 150, crop: "scale") %>
+              <% else %>
+                <div class="no-img"><i class="fa fa-image"></i></div>
+              <% end %>
+            </div>
+             <div class="card-desc text-center">
+
+              <h4>
+                <%= challenge.title %>
+              </h4>
+            </div>
+            <%=link_to challenge.title, challenge_path(challenge), class: "card-link" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
 
