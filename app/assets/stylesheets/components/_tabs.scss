@@ -10,6 +10,10 @@
   color: white;
 }
 
+.tab:hover{
+  background-color: grey;
+}
+
 .tab:first-child {
   border-radius: 10px 0 0 0;
 }
@@ -25,3 +29,7 @@
   display: none;
 }
 
+#messages{
+  height: 300px;
+  overflow-y: auto;
+}
