@@ -5,33 +5,14 @@
     <%#= submit_tag("Submit") %>
 <%# end %>
 
-<!--
-
-<%#= form_tag({controller: "challenges", action: "send_invite"}, method: "post") do %>
-  <div class='field'>
-    <%#= f.label :description %>
-    <br>
-    <%#= f.text_field :description %>
-  </div>
-  <h3>Invites</h3>
-    <%#= f.fields_for :invites do |invite| %>
-      <%#= render 'invite_fields', f: invite %>
-    <div class='links'>
-      <%#= link_to_add_association 'add invite', f, :invites %>
-    </div>
-    <%#= f.submit %>
-  <%#end%>
-<%#end%>
-
--->
-
-
 <%#= simple_form_for @challenge, path: 'send_invite_path' do |f| %>
 
 <%#= simple_form_for @challenge do |f| %>
 <%= simple_form_for @challenge do |f| %>
-  <%= f.simple_fields_for :invites do |invite| %>
+  <%= f.simple_fields_for :invites, @challenge.invites.last do |invite| %>
+  <%#= f.simple_fields_for :invites do |invite| %>
     <%= render 'invite_fields', f: invite %>
+    <%#= render 'invite_fields', f: invite %>
     <div class='links'>
       <%= link_to_add_association 'add invite', f, :invites %>
     </div>
