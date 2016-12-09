@@ -5,6 +5,7 @@ $( document ).ready(function() {
 
     $(".tab-about").addClass("tab-invisible");
     $(".tab-messages").addClass("tab-invisible");
+    $(".tab-members").addClass("tab-invisible");
     $(".tab-"+$(this).val()).removeClass("tab-invisible");
   });
 

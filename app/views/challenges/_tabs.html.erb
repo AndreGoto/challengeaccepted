@@ -1,8 +1,9 @@
 
 
 <div class="row tabs">
-  <input type="button" id="about"    class="tab col-xs-6 col-sm-3 col-sm-offset-3" value="about">
-  <input type="button" id="cooments" class="tab col-xs-6 col-sm-3 active" value="messages">
+  <input type="button" id="about"    class="tab col-xs-4 col-sm-2 col-sm-offset-2" value="about">
+  <input type="button" id="cooments" class="tab col-xs-4 col-sm-2 active" value="messages">
+  <input type="button" id="members" class="tab col-xs-4 col-sm-2" value="members">
 </div>
 
 <div class="tab-about tab-invisible">
@@ -10,4 +11,7 @@
 </div>
 <div class="tab-messages">
   <%= render 'messages' %>
+</div>
+<div class="tab-members tab-invisible">
+  <%= render 'members' %>
 </div>
