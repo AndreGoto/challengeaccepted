@@ -1,4 +1,4 @@
-<%= simple_form_for(@challenge_message,url: challenge_challenge_messages_path(@challenge.id), remote: false) do |form| %>
-  <%= form.input :message %>
-  <%= form.button :submit %>
+<%= simple_form_for(@challenge_message,url: challenge_challenge_messages_path(@challenge.id), remote: false) do |f| %>
+  <%= f.input :message %>
+  <%= f.button :submit, value: "Send", class: "btn btn-primary" %>
 <% end %>

@@ -1,6 +1,6 @@
 .tabs {
   display: flex;
-  padding: 6px 10px 0 10px;
+  padding: 15px 10px 20px 10px;
 }
 
 .tab {
@@ -8,6 +8,10 @@
   text-align: center;
   padding: 15px 0;
   color: white;
+}
+
+.tab:hover{
+  background-color: grey;
 }
 
 .tab:first-child {
@@ -25,3 +29,7 @@
   display: none;
 }
 
+#messages{
+  height: 300px;
+  overflow-y: auto;
+}
