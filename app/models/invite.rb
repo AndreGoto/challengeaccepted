@@ -9,10 +9,4 @@ class Invite < ApplicationRecord
     InviteMailer.welcome(challenge, challenge.invites).deliver_now
     #redirect_to challenge_url(challenge.id)
   end
-
-  # def invites
-  #   raise
-  #   guest_email
-  # end
-
 end
