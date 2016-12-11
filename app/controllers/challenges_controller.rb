@@ -74,6 +74,25 @@ class ChallengesController < ApplicationController
     #redirect_to challenge_url(challenge.id)
   end
 
+  def invite_request
+    # criar uma mensagem ao user owner com a requisiçao
+    @challenge = Challenge.find(params[:challenge_id])
+    message = "I'd like to join to your challenge #{@challenge.id} - #{@challenge.title}"
+    @mails  = Mailbox.where(user_id: @challenge.id_user_owner,
+                    id_user_contact: current_user.id,
+                            message: message)
+    if @mails.empty?
+      @mails = Mailbox.create(user_id: @challenge.id_user_owner,
+                      id_user_contact: current_user.id,
+                              message: message)
+      flash[:notice] = "Your request was send."
+    else
+      flash[:notice] = "Your already have requested it."
+    end
+    authorize @mails
+    redirect_to challenge_path(@challenge)
+  end
+
   private
 
   def set_challenge

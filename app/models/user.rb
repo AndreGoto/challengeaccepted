@@ -9,6 +9,7 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:facebook]
 
   has_many :challenges, through: :members
+  has_many :mailbox
 
 
   def self.find_for_facebook_oauth(auth)

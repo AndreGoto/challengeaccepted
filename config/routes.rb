@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :members, only: [:create]
     get 'invite', on: :member
     post 'send_invite', on: :member
+    post 'invite_request'
     resources :challenge_messages, only: :create
   end
   root to: 'pages#home'
