@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     get 'invite', on: :member
     post 'send_invite', on: :member
     post 'request_invite'
-    resources :challenge_messages, only: :create
+    resources :challenge_messages, only: [:create]
   end
   post 'deny_request/:id', to: 'challenge_requests#destroy'
-  resources :challenge_requests, only: [:index]
+  resources :challenge_requests, only: [:index, :destroy]
   root to: 'pages#home'
 end

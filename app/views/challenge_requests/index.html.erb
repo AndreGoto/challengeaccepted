@@ -23,7 +23,7 @@
             </td>
             <td class='col-xs-1'>
               <%= link_to "",
-                          challenge_path(request.challenge_id),
+                          challenge_request_path(request),
                           method: :delete, data: { confirm: "Are you sure?" },
                           class: 'fa fa-thumbs-down'
               %>

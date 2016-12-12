@@ -9,4 +9,11 @@ class ChallengeRequestsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    challengerequest = ChallengeRequest.find(params[:id])
+    authorize challengerequest
+    flash[:alert] = "Request removed"
+    redirect_to challenge_requests_path if challengerequest.destroy
+  end
 end
