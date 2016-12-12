@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   post 'deny_request/:id', to: 'challenge_requests#destroy'
   resources :challenge_requests, only: [:index, :destroy]
   root to: 'pages#home'
+  get 'dashboard', to: "dashboard#index"
 end
