@@ -11,7 +11,6 @@ class User < ApplicationRecord
   has_many :challenges, through: :members
   has_many :challenge_requests
 
-
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
