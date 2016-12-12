@@ -74,6 +74,12 @@ class ChallengesController < ApplicationController
     #redirect_to challenge_url(challenge.id)
   end
 
+  def voting
+  end
+
+  def send_vote
+  end
+
   private
 
   def set_challenge
