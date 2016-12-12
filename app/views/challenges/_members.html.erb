@@ -1,20 +1,16 @@
 <div class="text-center">
-
   <% Member.all.each do |member| %>
-      <!--if this member challenge is equivalent to this challenge id go.. -->
-      <% if member.challenge_id == @challenge.id %>
-
-        <!-- if there is has facebook picture, this guy was connected by facebook -->
-        <%if User.find(member.user_id).facebook_picture_url %>
-          <%= image_tag(User.find(member.user_id).facebook_picture_url)%>
-          <%= User.find(member.user_id).first_name %>
-          <%= User.find(member.user_id).last_name %>
-        <%else%>
-          <%= generate_profile_image(current_user) %>
-          <%= User.find(member.user_id).name %>
-        <%end%>
-
+    <% if member.challenge_id == @challenge.id %>
+      <%if User.find(member.user_id).facebook_picture_url %>
+        <%= image_tag(User.find(member.user_id).facebook_picture_url)%>
+        <%= User.find(member.user_id).first_name %>
+        <%= User.find(member.user_id).last_name %>
+      <%else%>
+        <%= generate_profile_image(current_user) %>
+        <%= User.find(member.user_id).name %>
       <%end%>
+
     <%end%>
+  <%end%>
 </div>
 
