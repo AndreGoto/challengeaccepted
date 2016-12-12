@@ -22,4 +22,18 @@ module ApplicationHelper
       end
     end
   end
+
+  def all_users_request(user)
+    unless user.nil?
+      challenges = Challenge.where(id_user_owner: current_user.id)
+      ct = 0
+      unless challenges.empty?
+        challenges.each do |challenge|
+          ct += ChallengeRequest.where(challenge_id: challenge.id).count
+        end
+      end
+      ct
+    end
+  end
+
 end
