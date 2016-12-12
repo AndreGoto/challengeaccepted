@@ -1,6 +1,7 @@
 class ChallengesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy, :invite, :send_invite, :voting, :send_vote]
+  before_action :set_members, only: [:show, :voting]
 
   def index
     # @challenges = Challenge.all
@@ -75,7 +76,6 @@ class ChallengesController < ApplicationController
   end
 
   def voting
-    @members = @challenge.members
   end
 
   def send_vote
@@ -86,6 +86,10 @@ class ChallengesController < ApplicationController
   end
 
   private
+
+  def set_members
+    @members = @challenge.members
+  end
 
   def set_challenge
     @challenge = Challenge.find(params[:id])
