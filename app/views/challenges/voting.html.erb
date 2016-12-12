@@ -1,25 +1,24 @@
 <div class="container">
   <div class="text-center"> <h3>Choose one member to get your vote!</h3></div>
   <% @members.each do |member| %>
-      <!--if this member challenge is equivalent to this challenge id go.. -->
-      <div class ="col-sm-2 photo-margin">
-        <div class="text-center">
-          <% if member.challenge_id == @challenge.id %>
-            <!-- if there is has facebook picture, this guy was connected by facebook -->
-            <%if member.user.facebook_picture_url %>
-              <%= generate_profile_photo(member.user)%>
-              <br>
-              <%= member.user.first_name %>
-              <%= member.user.last_name %>
-            <%else%>
-              <%= generate_profile_photo(member.user) %>
-              <br>
-              <%= member.user.name %>
-            <%end%>
-             <%= link_to "VOTE", controller: "challenges", action: "send_vote", voted_user_id: member.user.id, member_id: member.id %>
+    <!--if this member challenge is equivalent to this challenge id go.. -->
+    <div class ="col-sm-2 photo-margin">
+      <div class="text-center">
+        <% if member.challenge_id == @challenge.id %>
+          <!-- if there is has facebook picture, this guy was connected by facebook -->
+          <%if member.user.facebook_picture_url %>
+            <%= link_to (generate_profile_photo(member.user)), controller: "challenges", action: "send_vote", voted_user_id: member.user.id, member_id: member.id%>
+            <br>
+            <%= member.user.first_name %>
+            <%= member.user.last_name %>
+          <%else%>
+            <%= link_to (generate_profile_photo(member.user)), controller: "challenges", action: "send_vote", voted_user_id: member.user.id, member_id: member.id%>
+            <br>
+            <%= member.user.name %>
           <%end%>
-        </div>
+        <%end%>
       </div>
-    <%end%>
+    </div>
+  <%end%>
 </div>
 

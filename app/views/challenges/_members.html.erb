@@ -1,18 +1,17 @@
 <div class="text-center">
-
   <% @members.each do |member| %>
-      <!--if this member challenge is equivalent to this challenge id go.. -->
-      <% if member.challenge_id == @challenge.id %>
-        <!-- if there is has facebook picture, this guy was connected by facebook -->
-        <%if member.user.facebook_picture_url %>
-          <%= generate_profile_image(member.user)%>
-          <%= member.user.first_name %>
-          <%= member.user.last_name %>
-        <%else%>
-          <%= generate_profile_image(member.user) %>
-          <%= member.user.name %>
-        <%end%>
+    <!--if this member challenge is equivalent to this challenge id go.. -->
+    <% if member.challenge_id == @challenge.id %>
+      <!-- if there is has facebook picture, this guy was connected by facebook -->
+      <%if member.user.facebook_picture_url %>
+        <%= generate_profile_image(member.user)%>
+        <%= member.user.first_name %>
+        <%= member.user.last_name %>
+      <%else%>
+        <%= generate_profile_image(member.user) %>
+        <%= member.user.name %>
       <%end%>
     <%end%>
+  <%end%>
 </div>
 
