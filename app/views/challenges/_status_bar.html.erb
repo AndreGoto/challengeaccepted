@@ -3,7 +3,12 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="progress">
-          <div class="progress-bar progress-bar-success active" role="progressbar" aria-valuenow="<%= @status_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @status_percentage %>%;">
+          <% color = "progress-bar-success" if @status_percentage.to_i  >= 100 %>
+          <% color = "progress-bar-info"    if (@status_percentage.to_i <= 75 && @status_percentage.to_i < 100) %>
+          <% color = "progress-bar-warning" if (@status_percentage.to_i <= 50 && @status_percentage.to_i < 75)  %>
+          <% color = "progress-bar-danger"  if (@status_percentage.to_i <= 25 && @status_percentage.to_i < 50)  %>
+
+          <div class="progress-bar <%=color%> active" role="progressbar" aria-valuenow="<%= @status_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @status_percentage %>%;">
             <span class="sr-only"><%= @status_percentage %>% Complete</span>
           </div>
         </div>
