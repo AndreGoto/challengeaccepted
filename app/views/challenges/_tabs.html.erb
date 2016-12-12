@@ -1,20 +1,26 @@
-
-<div class="row tabs">
-  <input type="button" id="about"   class="tab col-xs-4 col-sm-2 col-sm-offset-3" value="about">
-  <input type="button" id="message" class="tab col-xs-4 col-sm-2 active" value="Trash talking">
-  <input type="button" id="members" class="tab col-xs-4 col-sm-2" value="members">
+<div class="bg-white">
+  <div class="container">
+    <div class="row tabs">
+      <input type="button" id="about"   class="tab col-xs-4 col-sm-4 col-md-2 col-md-offset-3" value="About">
+      <input type="button" id="message" class="tab col-xs-4 col-sm-4 col-md-2 active" value="Trash talking">
+      <input type="button" id="members" class="tab col-xs-4 col-sm-4 col-md-2" value="Members">
+    </div>
+  </div>
 </div>
-
-<div class="tab-about tab-invisible">
-  <%= render 'about' %>
-</div>
-<div class="tab-message">
-  <% unless @challenge.users.where(id: current_user.id).empty? %>
-    <%= render 'messages' %>
-  <% else %>
-    <p>Not allowed</p>
-  <% end %>
-</div>
-<div class="tab-members tab-invisible">
-  <%= render 'members' %>
+<div class="wrapper-tabs bg-light-gray">
+  <div class="container">
+    <div class="tab-about tab-invisible">
+      <%= render 'about' %>
+    </div>
+    <div class="tab-message">
+      <% unless @challenge.users.where(id: current_user.id).empty? %>
+        <%= render 'messages' %>
+      <% else %>
+        <p>Not allowed</p>
+      <% end %>
+    </div>
+    <div class="tab-members tab-invisible">
+      <%= render 'members' %>
+    </div>
+  </div>
 </div>
