@@ -85,6 +85,20 @@ class ChallengesController < ApplicationController
     redirect_to challenge_path(@challenge.id)
   end
 
+  def request_invite
+    @request = ChallengeRequest.where(user_id: current_user.id,
+                                 challenge_id: params[:challenge_id])
+    if @request.empty?
+      @request = ChallengeRequest.create(user_id: current_user.id,
+                                    challenge_id: params[:challenge_id])
+      flash[:notice] = "Your request was send."
+    else
+      flash[:alert] = "You already have requested it."
+    end
+    authorize @request
+    redirect_to challenge_path(params[:challenge_id])
+  end
+
   private
 
   def set_members

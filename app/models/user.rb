@@ -7,9 +7,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, omniauth_providers: [:facebook]
-
-  # has_many :challenges, through: :members
-
+  has_many :members
+  has_many :challenges, through: :members
+  has_many :challenge_requests
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice(:provider, :uid)
