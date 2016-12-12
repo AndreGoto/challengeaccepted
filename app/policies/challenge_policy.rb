@@ -28,7 +28,7 @@ class ChallengePolicy < ApplicationPolicy
 
   def voting?
     list = []
-    Member.all.each do |member|
+    record.members.each do |member|
       list << member.user_id
     end
     list.include?(user.id)
@@ -36,7 +36,7 @@ class ChallengePolicy < ApplicationPolicy
 
   def send_vote?
     list = []
-    Member.all.each do |member|
+    record.members.each do |member|
       list << member.user_id
     end
     list.include?(user.id)
