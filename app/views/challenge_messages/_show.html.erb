@@ -1,11 +1,11 @@
 <% unless current_user.nil? %>
   <% if message.member.user.id == current_user.id %>
-    <p class="text-right">
+    <p class="message text-right">
       <%= message.message %>
       <strong style="color: green"><%= Member.find(message.member_id).user.name %></strong>
     </p>
   <% else %>
-    <p class="text-left">
+    <p class="message text-left">
       <strong style="color: red"><%= Member.find(message.member_id).user.name %></strong>
       <%= message.message %>
     </p>

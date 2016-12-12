@@ -1,4 +1,8 @@
-<%= simple_form_for(@challenge_message,url: challenge_challenge_messages_path(@challenge.id), remote: false) do |f| %>
-  <%= f.input :message, label: "Trash Talking" %>
-  <%= f.button :submit, value: "Send", class: "btn btn-primary" %>
-<% end %>
+<%#= simple_form_for(@challenge_message,url: challenge_challenge_messages_path(@challenge.id), remote: false) do |f| %>
+  <%#= f.input :message, label: "Trash Talking", input_html: {id: "chat_speaker_input"} %>
+  <%#= f.button :submit, value: "Send", class: "btn btn-primary", 'data-behavior': "chat_speaker" %>
+<%# end %>
+<form>
+  <input type="text" id="chat_speaker_member_txt" data-behavior="chat_speaker" placeholder="Type something :) ">
+  <input type="hidden" id="chat_speaker_member_id" value="<%= @current_member.id %>">
+</form>
