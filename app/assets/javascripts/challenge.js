@@ -19,5 +19,4 @@ $( document ).ready(function() {
 
   var objDiv2 = $(".bg-main-blue")[0];
   objDiv2.scrollTop = objDiv2.scrollHeight;
-
 });

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     resources :challenge_messages, only: :create
   end
   root to: 'pages#home'
+  get 'dashboard', to: "dashboard#index"
 end
