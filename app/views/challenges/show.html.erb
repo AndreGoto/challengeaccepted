@@ -1,7 +1,7 @@
 <% if @challenge.picture.nil? %>
-<div class="banner banner-show" style="background-image: url('<%= cl_image_path @challenge.picture %>')">
-<% else %>
 <div class="banner banner-show">
+<% else %>
+<div class="banner banner-show" style="background-image: url('<%= @challenge.picture.url(:wide) %>')">
 <% end %>
   <div class="shadow"></div>
   <div class="banner-content">
