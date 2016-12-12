@@ -5,9 +5,6 @@ class ChallengePolicy < ApplicationPolicy
     end
   end
 
-  before_action :invite, only: [:invite, :send_invite]
-  before_action :vote, only: [:voting, :send_vote]
-
   def create?
     return true
   end
@@ -21,25 +18,23 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def invite?
-  end
-
-  def send_invite?
-  end
-
-  def voting?
-  end
-
-  def send_vote?
-  end
-
-  private
-
-  def invite
     # only the member user from that specific challenge can invite
     Challenge.find(record.id).users.find(user.id) == user
   end
 
-  def vote
+  def send_invite?
+    Challenge.find(record.id).users.find(user.id) == user
+  end
+
+  def voting?
+    list = []
+    Member.all.each do |member|
+      list << member.user_id
+    end
+    list.include?(user.id)
+  end
+
+  def send_vote?
     list = []
     Member.all.each do |member|
       list << member.user_id

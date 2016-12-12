@@ -6,14 +6,13 @@
 
         <!-- if there is has facebook picture, this guy was connected by facebook -->
         <%if User.find(member.user_id).facebook_picture_url %>
-          <%= image_tag(User.find(member.user_id).facebook_picture_url)%>
+          <%= generate_profile_image(User.find(member.user_id))%>
           <%= User.find(member.user_id).first_name %>
           <%= User.find(member.user_id).last_name %>
         <%else%>
-          <%= generate_profile_image(current_user) %>
+          <%= generate_profile_image(User.find(member.user_id)) %>
           <%= User.find(member.user_id).name %>
         <%end%>
-
       <%end%>
     <%end%>
 </div>

@@ -10,4 +10,16 @@ module ApplicationHelper
       end
     end
   end
+
+  def generate_profile_photo(user)
+    unless user.nil?
+      if user.picture?
+        image_tag user.picture.url(:big_face), { class: "avatar-big" }
+      elsif user.facebook_picture_url?
+        image_tag(user.facebook_picture_url,  class: "avatar-big")
+      else
+        image_tag("https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg", class: "avatar-big")
+      end
+    end
+  end
 end
