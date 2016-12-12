@@ -12,13 +12,8 @@
 </div>
 
 <div class='container home-text'>
-  <h2 class='home-title'><span class='first-letter'>S</span>taff favorites</h2>
+  <h2 class='home-title'>Staff favorites</h2>
 </div>
-
-<!-- <div>
-  challenges.each do ||
-</div> -->
-
 
 <div class="wrapper-cards">
   <div class="container">
@@ -27,8 +22,8 @@
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="card">
             <div class="card-picture">
-              <% if challenge.picture %>
-                <%= cl_image_tag(challenge.picture, width: 345, height: 150, crop: "scale") %>
+              <% if challenge.picture.url %>
+                <%=image_tag challenge.picture.url(:thumb) %>
               <% else %>
                 <div class="no-img"><i class="fa fa-image"></i></div>
               <% end %>

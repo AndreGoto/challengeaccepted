@@ -2,7 +2,7 @@ module ApplicationHelper
   def generate_profile_image(user)
     unless user.nil?
       if user.picture?
-        cl_image_tag(user.picture, { class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face })
+        image_tag user.picture.url(:bright_face), { class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" }
       elsif user.facebook_picture_url?
         image_tag(user.facebook_picture_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown")
       else
