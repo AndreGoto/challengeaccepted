@@ -74,6 +74,20 @@ class ChallengesController < ApplicationController
     #redirect_to challenge_url(challenge.id)
   end
 
+  def request_invite
+    @request = ChallengeRequest.where(user_id: current_user.id,
+                                 challenge_id: params[:challenge_id])
+    if @request.empty?
+      @request = ChallengeRequest.create(user_id: current_user.id,
+                                    challenge_id: params[:challenge_id])
+      flash[:notice] = "Your request was send."
+    else
+      flash[:alert] = "You already have requested it."
+    end
+    authorize @request
+    redirect_to challenge_path(params[:challenge_id])
+  end
+
   private
 
   def set_challenge
@@ -82,7 +96,6 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    #params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
      params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, invites_attributes: [:guest_email])
   end
 end

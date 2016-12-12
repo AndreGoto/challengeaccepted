@@ -3,6 +3,7 @@ class Challenge < ApplicationRecord
   has_many :users, through: :members
   has_many :members
   has_many :invites
+  has_many :challenge_requests
   accepts_nested_attributes_for :invites, reject_if: :all_blank, allow_destroy: true
   mount_uploader :picture, PhotoUploader
 end
