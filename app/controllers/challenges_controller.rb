@@ -74,23 +74,18 @@ class ChallengesController < ApplicationController
     #redirect_to challenge_url(challenge.id)
   end
 
-  def invite_request
-    # criar uma mensagem ao user owner com a requisiçao
-    @challenge = Challenge.find(params[:challenge_id])
-    message = "I'd like to join to your challenge #{@challenge.id} - #{@challenge.title}"
-    @mails  = Mailbox.where(user_id: @challenge.id_user_owner,
-                    id_user_contact: current_user.id,
-                            message: message)
-    if @mails.empty?
-      @mails = Mailbox.create(user_id: @challenge.id_user_owner,
-                      id_user_contact: current_user.id,
-                              message: message)
+  def request_invite
+    @request = ChallengeRequest.where(user_id: current_user.id,
+                                 challenge_id: params[:challenge_id])
+    if @request.empty?
+      @request = ChallengeRequest.create(user_id: current_user.id,
+                                    challenge_id: params[:challenge_id])
       flash[:notice] = "Your request was send."
     else
-      flash[:notice] = "Your already have requested it."
+      flash[:notice] = "You already have requested it."
     end
-    authorize @mails
-    redirect_to challenge_path(@challenge)
+    authorize @request
+    redirect_to challenge_path(params[:challenge_id])
   end
 
   private
@@ -101,7 +96,6 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    #params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
      params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, invites_attributes: [:guest_email])
   end
 end

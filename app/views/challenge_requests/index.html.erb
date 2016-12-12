@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <h1 class='text-center'>Requests</h1>
+    <table class='table'>
+      <thead>
+      <th class='col-xs-3'>User</th>
+      <th class='col-xs-7'>Challenge</th>
+      <th class='col-xs-1'>Aprove</th>
+      <th class='col-xs-1'>Deny</th>
+      </thead>
+      <% @requests.each do |challenge_requests| %>
+        <% challenge_requests.each do |request| %>
+          <tr>
+            <td class='col-xs-3'>
+              <%= generate_profile_image(User.find(request.user_id)) %>
+              <%= User.find(request.user_id).name %></td>
+            <td class='col-xs-7'><%= Challenge.find(request.challenge_id).title %></td>
+            <td class='col-xs-1'>
+              <%= link_to "",
+                          challenge_accept_request_path(request.challenge_id,requested_user_id: request.user_id),
+                          method: :post, class: 'fa fa-thumbs-up'
+              %>
+            </td>
+            <td class='col-xs-1'>
+              <%= link_to "",
+                          challenge_path(request.challenge_id),
+                          method: :delete, data: { confirm: "Are you sure?" },
+                          class: 'fa fa-thumbs-down'
+              %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+
+    </table>
+  </div>
+</div>

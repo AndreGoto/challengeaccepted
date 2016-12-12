@@ -5,7 +5,7 @@
         <% if (@challenge.invites.where(guest_email: current_user.email)).empty? && current_user.id != @challenge.owner.id %>
           <p>You're not invited... :(</p>
           <% if signed_in? %>
-            <%= link_to "Request your invitation", challenge_invite_request_path(@challenge), method: :post,
+            <%= link_to "Request to join", challenge_request_invite_path(@challenge), method: :post,
                         class:'btn btn-success' %>
           <% end %>
         <% else %>
