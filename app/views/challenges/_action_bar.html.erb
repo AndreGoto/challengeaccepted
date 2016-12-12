@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 text-center">
-        <% if (@challenge.invites.where(guest_email: current_user.email)).empty? && current_user.id != @challenge.owner.id %>
+        <% if (Member.where(user_id: current_user.id, challenge_id: @challenge.id).empty?) && (@challenge.invites.where(guest_email: current_user.email)).empty? && current_user.id != @challenge.owner.id %>
           <p>You're not invited... :(</p>
           <% if signed_in? %>
             <%= link_to "Request to join", challenge_request_invite_path(@challenge), method: :post,
