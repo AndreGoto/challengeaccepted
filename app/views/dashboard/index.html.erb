@@ -1,0 +1,50 @@
+<div class="row tabs">
+  <input type="button" id="pending-challenge" class="tab col-xs-6 col-sm-2 col-sm-offset-3" value="Pending">
+  <input type="button" id="on-going-challenge" class="tab col-xs-6 col-sm-2 active" value="On going challenges">
+  <input type="button" id="finished-challenge" class="tab col-xs-6 col-sm-2" value="Finished">
+</div>
+
+
+
+<div class='container'>
+  <div class='row '>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 dashboard text-center">
+
+      <div class='pending-challenge'>
+        <h3>Pending challenges</h3>
+      </div>
+
+
+      <div class='on-going-challenge'>
+        <h3>On going challenges</h3>
+
+        <% @challenges_progress.each do |challenge| %>
+          <div class='card-dashboard'>
+            <% if challenge.picture %>
+              <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+            <% else %>
+              <div class="no-img"><i class="fa fa-image"></i></div>
+            <% end %><br>
+            <%= challenge.title %><br>
+          </div>
+        <% end %>
+      </div>
+
+      <div class='finished-challenge'>
+        <h3>Your finished challenges</h3>
+
+        <% @challenges_ended.each do |challenge| %>
+          <div class='card-dashboard'>
+            <% if challenge.picture %>
+              <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+            <% else %>
+              <div class="no-img"><i class="fa fa-image"></i></div>
+            <% end %><br>
+            <%= challenge.title %><br>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
