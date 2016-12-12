@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     post 'accept_request', to: 'members#accept_request'
     get 'invite', on: :member
     post 'send_invite', on: :member
+    get 'voting', on: :member
+    get 'send_vote', on: :member
     post 'request_invite'
     resources :challenge_messages, only: [:create]
   end

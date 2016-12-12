@@ -25,4 +25,21 @@ class ChallengePolicy < ApplicationPolicy
   def send_invite?
     Challenge.find(record.id).users.find(user.id) == user
   end
+
+  def voting?
+    list = []
+    Member.all.each do |member|
+      list << member.user_id
+    end
+    list.include?(user.id)
+  end
+
+  def send_vote?
+    list = []
+    Member.all.each do |member|
+      list << member.user_id
+    end
+    list.include?(user.id)
+  end
+
 end
