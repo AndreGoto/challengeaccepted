@@ -1,13 +1,13 @@
 <% if @challenge.picture.nil? %>
-  <div class="banner banner-show">
+<div class="banner banner-show">
 <% else %>
-  <div class="banner banner-show" style="background-image: url('<%= @challenge.picture.url(:wide) %>')">
+<div class="banner banner-show" style="background-image: url('<%= @challenge.picture.url(:wide) %>')">
 <% end %>
-    <div class="shadow"></div>
-    <div class="banner-content">
-      <h1><%= @challenge.title %></h1>
-    </div>
+  <div class="shadow"></div>
+  <div class="banner-content">
+    <h1><%= @challenge.title %></h1>
   </div>
+</div>
 <%= render 'action_bar' %>
 <%= render 'status_bar' %>
 <div class="container">
