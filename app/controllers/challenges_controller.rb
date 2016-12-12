@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :invite, :send_invite, :voting]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :invite, :send_invite, :voting, :send_vote]
 
   def index
     # @challenges = Challenge.all
@@ -75,9 +75,14 @@ class ChallengesController < ApplicationController
   end
 
   def voting
+    @members = @challenge.members
   end
 
   def send_vote
+    member = Member.find(params[:member_id])
+    member.voted_id = params[:voted_user_id].to_i
+    member.save
+    redirect_to challenge_path(@challenge.id)
   end
 
   private
@@ -89,6 +94,6 @@ class ChallengesController < ApplicationController
 
   def challenge_params
     #params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
-     params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, invites_attributes: [:guest_email])
+     params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :voted_user_id, :member_id, invites_attributes: [:guest_email])
   end
 end
