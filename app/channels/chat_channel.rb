@@ -11,6 +11,6 @@ class ChatChannel < ApplicationCable::Channel
   def speak(data)
     ChallengeMessage.create! message: data["message"]["msg"], member_id: data["message"]["member_id"]
     @m = Member.find(data["message"]["member_id"])
-    ActionCable.server.broadcast "chat_channel", message: data["message"]["msg"], member_name: @m.user.name, member_picture: @m.user.picture.url(:bright_face)
+    ActionCable.server.broadcast "chat_channel", message: data["message"]["msg"], member_name: @m.user.name, member_picture: @m.user.picture.url(:bright_face), member_id: @m.user.id
   end
 end
