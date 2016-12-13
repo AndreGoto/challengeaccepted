@@ -20,8 +20,12 @@ $( document ).ready(function() {
   });
 
   var objDiv = $("#messages")[0];
-  objDiv.scrollTop = objDiv.scrollHeight;
+  if(objDiv){
+    objDiv.scrollTop = objDiv.scrollHeight;
 
-  var objDiv2 = $(".bg-main-blue")[0];
-  objDiv2.scrollTop = objDiv2.scrollHeight;
+    var objDiv2 = $(".bg-main-blue")[0];
+    objDiv2.scrollTop = objDiv2.scrollHeight;
+
+  }
 });
+
