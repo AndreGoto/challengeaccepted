@@ -12,4 +12,8 @@ class MemberPolicy < ApplicationPolicy
   def accept_request?
     User.find(Challenge.find(record.challenge_id).id_user_owner) == user
   end
+
+  def update?
+    record.user_id == user.id
+  end
 end

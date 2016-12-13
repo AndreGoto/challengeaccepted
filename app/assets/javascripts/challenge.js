@@ -19,6 +19,40 @@ $( document ).ready(function() {
     todayHighlight: true
   });
 
+  $('.slick-class').slick({
+    dots: false,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    prevArrow: false,
+    nextArrow: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+
+
   var objDiv = $("#messages")[0];
   if(objDiv){
     objDiv.scrollTop = objDiv.scrollHeight;
@@ -27,5 +61,6 @@ $( document ).ready(function() {
     objDiv2.scrollTop = objDiv2.scrollHeight;
 
   }
+
 });
 
