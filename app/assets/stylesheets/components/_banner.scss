@@ -34,9 +34,14 @@
   z-index: 1;
   font-weight: bold;
   font-size: 50px;
-  .btn {
+  .btn-create {
     background-color: $main-blue;
     font-weight: bold;
+  }
+  .btn-explore {
+    background-color: $petro-blue;
+    font-weight: lighter;
+    color: $main-blue;
   }
 }
 

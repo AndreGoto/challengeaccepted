@@ -5,14 +5,15 @@
       <div>
         <h1>Challenge your friends</h1>
         <p><strong>Motivate each other :)</strong></p>
-        <%=link_to 'Start a challenge', new_challenge_path, class: "btn btn-lg" %>
+        <%=link_to 'Start a challenge', new_challenge_path, class: "btn-create btn-lg" %>
+        <%=link_to raw('Explore <i class="fa fa-search"></i>'), challenges_path, class: "btn-lg btn-explore" %>
       </div>
     </div>
   </div>
 </div>
 
 <div class='container home-text'>
-  <h2 class='home-title'>Staff favorites</h2>
+  <h2 class='home-title'>Staff picks <i class="fa fa-heart"></i></h2>
 </div>
 
 <div class="wrapper-cards">
