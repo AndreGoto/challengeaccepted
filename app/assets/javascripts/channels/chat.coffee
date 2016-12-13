@@ -7,14 +7,19 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 
   received: (data) ->
     # alert(data['message'])
-    $('#messages').append('<p class="message text-right">' + data['message'] + ' <strong style="color: green">' + data['member_name'] + '</strong></p>')
+    m_picture = (pic) ->
+      '</p><img src="' + pic + '" class="avatar">'
+
+    $('#messages').append('<div class="message"><p class="balloon"><span class="author">' + data['member_name'] + "</span>" + data['message'] + m_picture(data['member_picture']) + '</div>')
+    $("#messages").animate({
+      scrollTop: $('#messages .messages-wrapper').height()
+    }, 400)
 
   speak: (message, member_id) ->
      @perform 'speak', message: {msg: message, member_id: member_id}
 
 
-$(document).on 'keypress', (event) ->
-  if event.keyCode is 13 # return = send
-    App.chat.speak($('#chat_speaker_member_txt').val(), $('#chat_speaker_member_id').val())
-    event.preventDefault()
-    # alert($('#chat_speaker_member_id').val())
+$('#chat_speaker_member_button').on 'click', (event) ->
+  App.chat.speak($('#chat_speaker_member_txt').val(), $('#chat_speaker_member_id').val())
+  event.preventDefault()
+  $('#chat_speaker_member_txt').val(" ")

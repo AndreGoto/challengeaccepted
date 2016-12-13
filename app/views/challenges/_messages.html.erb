@@ -1,13 +1,15 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
     <div id="messages">
-      <% if @challenge_messages.blank? %>
-        The trash talk for <%= @challenge.title %> starts here.
-      <% else %>
-        <% @challenge_messages.each do |message| %>
-          <%= render 'challenge_messages/show', message: message %>
+      <div class="messages-wrapper">
+        <% if @challenge_messages.blank? %>
+          The trash talk for <%= @challenge.title %> starts here.
+        <% else %>
+          <% @challenge_messages.each do |message| %>
+            <%= render 'challenge_messages/show', message: message %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
     <%= render 'challenge_messages/form' %>
   </div>
