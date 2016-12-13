@@ -8,6 +8,7 @@ class ChallengeRequestsController < ApplicationController
         @requests << ChallengeRequest.where(challenge_id: challenge.id)
       end
     end
+    @waiting_aproval = ChallengeRequest.where(user_id: current_user.id)
   end
 
   def destroy
