@@ -12,6 +12,21 @@
 
       <div class='tab-pending-challenge tab-invisible'>
         <h3>Pending challenges</h3>
+          <!-- #challenges in which you requested to join and is waiting for the answer -->
+          <% @waiting_approval.each do |pendingchallenge| %>
+            <div class='card-dashboard'>
+              <% if pendingchallenge.challenge.picture %>
+                  <%= link_to challenge_path(pendingchallenge.challenge) do %>
+                    <%= cl_image_tag(pendingchallenge.challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+                  <% end %>
+                <%#= cl_image_tag(pendingchallenge.challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+              <% else %>
+                <div class="no-img"><i class="fa fa-image"></i></div>
+              <% end %><br>
+              <%=link_to pendingchallenge.challenge.title, challenge_path(pendingchallenge.challenge)%><br>
+            </div>
+          <% end %>
+          <%#= @waiting_approval.last.challenge.title   %>
       </div>
 
 
@@ -21,11 +36,13 @@
         <% @challenges_progress.each do |challenge| %>
           <div class='card-dashboard'>
             <% if challenge.picture %>
-              <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+              <%= link_to challenge_path(challenge) do %>
+                <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+              <% end %>
             <% else %>
               <div class="no-img"><i class="fa fa-image"></i></div>
             <% end %><br>
-            <%= challenge.title %><br>
+            <%=link_to challenge.title, challenge_path(challenge)%><br>
           </div>
         <% end %>
       </div>
@@ -36,11 +53,13 @@
         <% @challenges_ended.each do |challenge| %>
           <div class='card-dashboard'>
             <% if challenge.picture %>
-              <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+              <%= link_to challenge_path(challenge) do %>
+                <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+              <% end %>
             <% else %>
               <div class="no-img"><i class="fa fa-image"></i></div>
             <% end %><br>
-            <%= challenge.title %><br>
+            <%=link_to challenge.title, challenge_path(challenge)%><br>
           </div>
         <% end %>
       </div>
