@@ -7,20 +7,33 @@
     </div>
   </div>
 </div>
+
 <div class="wrapper-tabs bg-light-gray">
   <div class="container">
     <div class="tab-about tab-invisible">
       <%= render 'about' %>
     </div>
     <div class="tab-message">
-      <% unless @challenge.users.where(id: current_user.id).empty? %>
-        <%= render 'messages' %>
+      <% if signed_in? %>
+        <% unless @challenge.users.where(id: current_user.id).empty? %>
+          <%= render 'messages' %>
+        <% else %>
+          <p class='text-center'>You are not allowed :( </p>
+        <% end %>
       <% else %>
-        <p>Not allowed</p>
+        <p class='text-center'>You are not allowed :( </p>
       <% end %>
     </div>
     <div class="tab-members tab-invisible">
-      <%= render 'members' %>
+      <% if signed_in? %>
+        <%= render 'members' %>
+      <% else %>
+        <p class="text-center">
+          <%= Member.where(challenge_id: params[:id]).count %>
+          <%= (Member.where(challenge_id: params[:id]).count) == 1 ? 'Member' : 'Members'%>
+          in this challenge
+        </p>
+      <% end %>
     </div>
   </div>
 </div>

@@ -8,4 +8,8 @@ class MemberPolicy < ApplicationPolicy
   def create?
     return true
   end
+
+  def accept_request?
+    User.find(Challenge.find(record.challenge_id).id_user_owner) == user
+  end
 end

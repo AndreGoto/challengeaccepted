@@ -1,6 +1,7 @@
 class ChallengesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :invite, :send_invite]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :invite, :send_invite, :voting, :send_vote]
+  before_action :set_members, only: [:show, :voting]
 
   def index
     # @challenges = Challenge.all
@@ -12,7 +13,7 @@ class ChallengesController < ApplicationController
     status_total = (@challenge.end_date - @challenge.start_date).to_i
     status_until_now = (Date.today - @challenge.start_date).to_i
     @status_percentage = (status_until_now * 100)/status_total
-    @status_days_to_finish = status_total - status_until_now
+    @status_days_to_finish = ((status_total - status_until_now) < 0) ? 0 : status_total - status_until_now
 
     @challenge_message = ChallengeMessage.new
     @members = Member.where(challenge_id: @challenge.id)
@@ -77,7 +78,35 @@ class ChallengesController < ApplicationController
     #redirect_to challenge_url(challenge.id)
   end
 
+  def voting
+  end
+
+  def send_vote
+    member = Member.find(params[:member_id])
+    member.voted_id = params[:voted_user_id].to_i
+    member.save
+    redirect_to challenge_path(@challenge.id)
+  end
+
+  def request_invite
+    @request = ChallengeRequest.where(user_id: current_user.id,
+                                 challenge_id: params[:challenge_id])
+    if @request.empty?
+      @request = ChallengeRequest.create(user_id: current_user.id,
+                                    challenge_id: params[:challenge_id])
+      flash[:notice] = "Your request was send."
+    else
+      flash[:alert] = "You already have requested it."
+    end
+    authorize @request
+    redirect_to challenge_path(params[:challenge_id])
+  end
+
   private
+
+  def set_members
+    @members = @challenge.members
+  end
 
   def set_challenge
     @challenge = Challenge.find(params[:id])
@@ -86,6 +115,6 @@ class ChallengesController < ApplicationController
 
   def challenge_params
     #params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
-     params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, invites_attributes: [:guest_email])
+     params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :voted_user_id, :member_id, invites_attributes: [:guest_email])
   end
 end
