@@ -17,6 +17,9 @@ class ChallengesController < ApplicationController
 
     @challenge_message = ChallengeMessage.new
     @members = Member.where(challenge_id: @challenge.id)
+
+    @current_member = Member.where(challenge_id: @challenge.id, user_id: current_user.id).last
+
     user_challenge_messages = []
     @members.each do |member|
       user_challenge_messages << ChallengeMessage.where(member_id: member.id)

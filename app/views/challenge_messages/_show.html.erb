@@ -1,13 +1,19 @@
 <% unless current_user.nil? %>
   <% if message.member.user.id == current_user.id %>
-    <p class="text-right">
-      <%= message.message %>
-      <strong style="color: green"><%= Member.find(message.member_id).user.name %></strong>
-    </p>
+    <div class="message">
+      <p class="balloon"><span class="author"><%= Member.find(message.member_id).user.name %></span>
+     <%= message.message %></p>
+     <% unless Member.find(message.member_id).user.picture.url.nil? %>
+      <%=image_tag Member.find(message.member_id).user.picture.url(:bright_face), class: "avatar" %>
+     <% end %>
+    </div>
   <% else %>
-    <p class="text-left">
-      <strong style="color: red"><%= Member.find(message.member_id).user.name %></strong>
-      <%= message.message %>
-    </p>
+    <div class="message invert">
+      <p class="balloon"><span class="author"><%= Member.find(message.member_id).user.name %></span>
+     <%= message.message %></p>
+     <% unless Member.find(message.member_id).user.picture.url.nil? %>
+      <%=image_tag Member.find(message.member_id).user.picture.url(:bright_face), class: "avatar" %>
+     <% end %>
+    </div>
   <% end %>
 <% end %>
