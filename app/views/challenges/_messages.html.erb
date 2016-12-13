@@ -1,16 +1,20 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
-    <div id="messages">
-      <div class="messages-wrapper">
-        <% if @challenge_messages.blank? %>
-          The trash talk for <%= @challenge.title %> starts here.
-        <% else %>
-          <% @challenge_messages.each do |message| %>
-            <%= render 'challenge_messages/show', message: message %>
+    <% if Member.where(challenge_id: @challenge.id, user_id: current_user.id, inative: true).empty? %>
+      <div id="messages">
+        <div class="messages-wrapper">
+          <% if @challenge_messages.blank? %>
+            The trash talk for <%= @challenge.title %> starts here.
+          <% else %>
+            <% @challenge_messages.each do |message| %>
+              <%= render 'challenge_messages/show', message: message %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
-    <%= render 'challenge_messages/form' %>
+      <%= render 'challenge_messages/form' %>
+    <% else %>
+      <p class='text-center'>You cannot see the challenge messages... =/</p>
+    <% end %>
   </div>
 </div>

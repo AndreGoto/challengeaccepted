@@ -2,7 +2,7 @@ class ChallengeMessagesController < ApplicationController
 
   def create
     @challenge = Challenge.find(params[:challenge_id])
-    @members = Member.where(user_id: current_user.id, challenge_id: params[:challenge_id])
+    @members = Member.where(user_id: current_user.id, challenge_id: params[:challenge_id], inative: false)
     @message = ChallengeMessage.new(challengemessage_params)
     @message.member_id = @members.first.id
     authorize @message

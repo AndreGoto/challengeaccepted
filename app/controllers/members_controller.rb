@@ -26,4 +26,12 @@ class MembersController < ApplicationController
       redirect_to challenge_requests_path
     end
   end
+
+  def update
+    member = Member.find(params[:id])
+    authorize member
+    flash[:alert] = "You left the challenge :/"
+    member.inative = true
+    redirect_to challenge_path(params[:challenge_id]) if member.save
+  end
 end

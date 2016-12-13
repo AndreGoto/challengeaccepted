@@ -14,8 +14,19 @@
               <%= button_to "Accept Challenge", challenge_members_path(@challenge), method: :post, class: 'btn btn-lg btn-success btn-block'%>
             <% end %>
           <% else %>
-            <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-lg btn-success btn-block" if @status_percentage.to_i < 100 %>
-            <%= link_to "It is time to vote", voting_challenge_path(@challenge.id), :class => "btn btn-lg btn-warning btn-block" if @status_percentage.to_i >= 100 %>
+            <% if !Member.where(user_id: current_user.id, challenge_id: @challenge.id, inative: true).empty? %>
+              <p>You cannot re-join to this challenge... :(</p>
+            <% else %>
+              <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-lg btn-success" if @status_percentage.to_i < 100 %>
+              <%= link_to "It is time to vote", voting_challenge_path(@challenge.id), class: "btn btn-lg btn-warning" if @status_percentage.to_i >= 100 %>
+              <%= link_to "Leave",
+                          challenge_member_path( @challenge.id,
+                                                 Member.where(user_id: current_user.id,
+                                                         challenge_id: @challenge.id).first.id),
+                          method: :PATCH, data: { confirm: "Are you sure?" },
+                          class: "btn btn-lg btn-danger" if (@status_percentage.to_i < 100) && (@challenge.owner != current_user)
+              %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
