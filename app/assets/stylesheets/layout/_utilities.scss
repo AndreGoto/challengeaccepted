@@ -16,7 +16,7 @@ html, body {
 .page-wrap {
   min-height: 100%;
   position: relative;
-  padding-bottom: 160px;
+  padding-bottom: 145px;
 }
 .page-wrap:after {
   content: "";
@@ -47,6 +47,12 @@ html, body {
 }
 .bg-main-blue {
   background-color: $main-blue;
+}
+.bg-white {
+  background-color: white;
+}
+.bg-light-gray {
+  background-color: #f0f0f0;
 }
 
 .bg-main-blue h1, .bg-main-blue .h1,

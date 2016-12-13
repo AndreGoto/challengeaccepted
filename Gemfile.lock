@@ -294,6 +294,7 @@ DEPENDENCIES
   carrierwave
   cloudinary (= 1.1.0)
   cocoon
+  coffee-script
   devise
   faker
   figaro
