@@ -85,7 +85,7 @@ class ChallengesController < ApplicationController
       member.save
       flash[:notice] = "Your vote has been confirmed!"
     else
-      flash[:notice] = "Vote canceled. You already voted."
+      flash[:alert] = "Vote canceled. You already voted."
     end
     redirect_to challenge_path(@challenge.id)
   end
