@@ -1,22 +1,26 @@
+<div class='banner-challenges'>
+  <div class='banner-challenges-content'>
+    <div class="container">
+      <h1 class='text-center explore-title'>Get some inspiration!</h1>
+    </div>
+  </div>
+</div>
+
 <div class="container">
-  <h1>Challenges</h1>
-  <table class="table">
+  <div class='row'>
     <% @challenges.each do |challenge| %>
-      <tr>
-        <td> <%= challenge.title %> </td>
-        <td> <%= challenge.owner.email %> </td>
-        <td> <%=link_to 'Show', challenge_path(challenge) %> </td>
-        <td>
-          <% if policy(challenge).edit? %>
-            <%=link_to 'Edit', edit_challenge_path(challenge) %>
-          <% end %>
-        </td>
-        <td>
-          <% if policy(challenge).destroy? %>
-            <%=link_to 'Delete', challenge_path(challenge), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-        </td>
-      </tr>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class='card-explore text-center'>
+          <% if challenge.picture %>
+            <%= link_to challenge_path(challenge) do %>
+              <%= cl_image_tag(challenge.picture, width: 150, height: 150, crop: "scale", class: 'img-circle') %>
+            <% end %>
+          <% else %>
+            <div class="no-img"><i class="fa fa-image"></i></div>
+          <% end %><br>
+          <%=link_to challenge.title, challenge_path(challenge)%>
+        </div>
+      </div>
     <% end %>
-  </table>
+  </div>
 </div>
