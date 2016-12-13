@@ -99,9 +99,9 @@ class ChallengesController < ApplicationController
     if @request.empty?
       @request = ChallengeRequest.create(user_id: current_user.id,
                                     challenge_id: params[:challenge_id])
-      flash[:notice] = "Your request was send."
+      flash[:notice] = "Your request was sent."
     else
-      flash[:alert] = "You already have requested it."
+      flash[:alert] = "You have already requested it."
     end
     authorize @request
     redirect_to challenge_path(params[:challenge_id])

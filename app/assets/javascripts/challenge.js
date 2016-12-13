@@ -19,12 +19,6 @@ $( document ).ready(function() {
     todayHighlight: true
   });
 
-  // var objDiv = $("#messages")[0];
-  // objDiv.scrollTop = objDiv.scrollHeight;
-
-  // var objDiv2 = $(".bg-main-blue")[0];
-  // objDiv2.scrollTop = objDiv2.scrollHeight;
-
   $('.slick-class').slick({
     dots: false,
     infinite: true,
@@ -58,4 +52,15 @@ $( document ).ready(function() {
     ]
   });
 
+
+  var objDiv = $("#messages")[0];
+  if(objDiv){
+    objDiv.scrollTop = objDiv.scrollHeight;
+
+    var objDiv2 = $(".bg-main-blue")[0];
+    objDiv2.scrollTop = objDiv2.scrollHeight;
+
+  }
+
 });
+
