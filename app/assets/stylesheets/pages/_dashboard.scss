@@ -1,6 +1,7 @@
 .dashboard {
   background-color: white;
   margin-top: 15px;
+  margin-bottom: 15px;
   color: $petro-blue;
 }
 
@@ -12,5 +13,15 @@
 
 #on-going-challenge {
   border-right: 3px solid yellow;
-  border-left: 3px solid grey;
+  border-left: 3px solid yellow;
+}
+
+.challenge-status-section {
+  background-color: #7CFAFF;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.tabs-dashboard {
+  padding-top: 15px;
 }

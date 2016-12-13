@@ -1,7 +1,7 @@
-<div class="row tabs">
-  <input type="button" id="pending-challenge" class="tab col-xs-6 col-sm-2 col-sm-offset-3" value="Pending">
-  <input type="button" id="on-going-challenge" class="tab col-xs-6 col-sm-2 active" value="On going challenges">
-  <input type="button" id="finished-challenge" class="tab col-xs-6 col-sm-2" value="Finished">
+<div class="row tabs tabs-dashboard">
+  <input type="button" id="pending-challenge" class="tab col-xs-6 col-sm-2 col-sm-offset-3" value="pending">
+  <input type="button" id="on-going-challenge" class="tab col-xs-6 col-sm-2 active" value="on going challenges">
+  <input type="button" id="finished-challenge" class="tab col-xs-6 col-sm-2" value="finished">
 </div>
 
 
@@ -10,13 +10,13 @@
   <div class='row '>
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 dashboard text-center">
 
-      <div class='pending-challenge'>
+      <div class='tab-pending-challenge tab-invisible'>
         <h3>Pending challenges</h3>
       </div>
 
 
-      <div class='on-going-challenge'>
-        <h3>On going challenges</h3>
+      <div class='tab-on-going-challenge'>
+        <h3 class='challenge-status-section'>On going challenges</h3>
 
         <% @challenges_progress.each do |challenge| %>
           <div class='card-dashboard'>
@@ -30,7 +30,7 @@
         <% end %>
       </div>
 
-      <div class='finished-challenge'>
+      <div class='tab-finished-challenge tab-invisible'>
         <h3>Your finished challenges</h3>
 
         <% @challenges_ended.each do |challenge| %>
