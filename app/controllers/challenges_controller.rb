@@ -83,8 +83,13 @@ class ChallengesController < ApplicationController
 
   def send_vote
     member = Member.find(params[:member_id])
-    member.voted_id = params[:voted_user_id].to_i
-    member.save
+    unless member_voted?(member)
+      member.voted_id = params[:voted_user_id].to_i
+      member.save
+      flash[:notice] = "Your vote has been confirmed!"
+    else
+      flash[:alert] = "Vote canceled. You already voted."
+    end
     redirect_to challenge_path(@challenge.id)
   end
 
@@ -103,6 +108,10 @@ class ChallengesController < ApplicationController
   end
 
   private
+
+  def member_voted?(member)
+    member.voted_id.present?
+  end
 
   def set_members
     @members = @challenge.members
