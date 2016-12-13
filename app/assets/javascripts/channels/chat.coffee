@@ -6,11 +6,23 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    # alert(data['message'])
     m_picture = (pic) ->
-      '</p><img src="' + pic + '" class="avatar">'
+      if(pic != null)
+        '<img src="' + pic + '" class="avatar">'
+      else
+        ' '
 
-    $('#messages').append('<div class="message"><p class="balloon"><span class="author">' + data['member_name'] + "</span>" + data['message'] + m_picture(data['member_picture']) + '</div>')
+    chat_speaker_current_id = parseInt($("#chat_speaker_current_id").val())
+    m_current_member =
+      if(data['member_id'] == chat_speaker_current_id)
+        '<div class="message">'
+      else
+        '<div class="message invert">'
+
+    now = new Date(Date.now());
+    formatted = now.getHours() + ":" + now.getMinutes()
+
+    $('#messages').append(m_current_member + '<p class="balloon"><span class="author">' + data['member_name'] + '<span class="time"> ~ ' + now.toLocaleDateString() + ' at ' + formatted + ' ~ </span></span>' + data['message'] + '</p>' + m_picture(data['member_picture']) + '</div>')
     $("#messages").animate({
       scrollTop: $('#messages .messages-wrapper').height()
     }, 400)
