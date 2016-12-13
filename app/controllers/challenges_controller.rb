@@ -18,8 +18,9 @@ class ChallengesController < ApplicationController
     @challenge_message = ChallengeMessage.new
     @members = Member.where(challenge_id: @challenge.id)
 
-    @current_member = Member.where(challenge_id: @challenge.id, user_id: current_user.id).last
-
+    if current_user.present?
+      @current_member = Member.where(challenge_id: @challenge.id, user_id: current_user.id).last
+    end
     user_challenge_messages = []
     @members.each do |member|
       user_challenge_messages << ChallengeMessage.where(member_id: member.id)
@@ -88,7 +89,7 @@ class ChallengesController < ApplicationController
       member.save
       flash[:notice] = "Your vote has been confirmed!"
     else
-      flash[:alert] = "Vote canceled. You already voted."
+      flash[:alert] = "You already voted!"
     end
     redirect_to challenge_path(@challenge.id)
   end
