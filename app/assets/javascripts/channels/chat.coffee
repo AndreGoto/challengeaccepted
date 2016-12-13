@@ -19,7 +19,10 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
       else
         '<div class="message invert">'
 
-    $('#messages').append(m_current_member + '<p class="balloon"><span class="author">' + data['member_name'] + "</span>" + data['message'] + '</p>' + m_picture(data['member_picture']) + '</div>')
+    now = new Date(Date.now());
+    formatted = now.getHours() + ":" + now.getMinutes()
+
+    $('#messages').append(m_current_member + '<p class="balloon"><span class="author">' + data['member_name'] + '<span class="time"> ~ ' + now.toLocaleDateString() + ' at ' + formatted + ' ~ </span></span>' + data['message'] + '</p>' + m_picture(data['member_picture']) + '</div>')
     $("#messages").animate({
       scrollTop: $('#messages .messages-wrapper').height()
     }, 400)

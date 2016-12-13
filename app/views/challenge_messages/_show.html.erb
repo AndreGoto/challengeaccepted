@@ -1,7 +1,7 @@
 <% unless current_user.nil? %>
   <% if message.member.user.id == current_user.id %>
     <div class="message">
-      <p class="balloon"><span class="author"><%= Member.find(message.member_id).user.name %></span>
+      <p class="balloon"><span class="author"><%= Member.find(message.member_id).user.name %><span class="time"> ~ <%= (ChallengeMessage.find(message.id).created_at).strftime("%m/%d/%Y at %H:%M") %> ~ </span></span>
      <%= message.message %></p>
      <% unless Member.find(message.member_id).user.picture.url.nil? %>
       <%=image_tag Member.find(message.member_id).user.picture.url(:bright_face), class: "avatar" %>
@@ -9,7 +9,7 @@
     </div>
   <% else %>
     <div class="message invert">
-      <p class="balloon"><span class="author"><%= Member.find(message.member_id).user.name %></span>
+      <p class="balloon"><span class="author"><%= Member.find(message.member_id).user.name %><span class="time"> ~ <%= (ChallengeMessage.find(message.id).created_at).strftime("%m/%d/%Y at %H:%M") %> ~ </span></span>
      <%= message.message %></p>
      <% unless Member.find(message.member_id).user.picture.url.nil? %>
       <%=image_tag Member.find(message.member_id).user.picture.url(:bright_face), class: "avatar" %>
