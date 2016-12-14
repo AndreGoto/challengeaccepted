@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20161214135745) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,14 +32,6 @@ ActiveRecord::Schema.define(version: 20161214135745) do
     t.index ["user_id"], name: "index_challenge_requests_on_user_id", using: :btree
   end
 
-  create_table "challengemessages", force: :cascade do |t|
-    t.string   "message"
-    t.integer  "member_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_challengemessages_on_member_id", using: :btree
-  end
-
   create_table "challenges", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -49,8 +40,9 @@ ActiveRecord::Schema.define(version: 20161214135745) do
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "id_user_owner"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "at_stake"
     t.boolean  "yourself",      default: false
   end
 
@@ -103,7 +95,6 @@ ActiveRecord::Schema.define(version: 20161214135745) do
   add_foreign_key "challenge_messages", "members"
   add_foreign_key "challenge_requests", "challenges"
   add_foreign_key "challenge_requests", "users"
-  add_foreign_key "challengemessages", "members"
   add_foreign_key "invites", "challenges"
   add_foreign_key "members", "challenges"
   add_foreign_key "members", "users"

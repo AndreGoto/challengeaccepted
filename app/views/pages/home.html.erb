@@ -16,4 +16,58 @@
   <h2 class='home-title'>Staff picks <i class="fa fa-heart"></i></h2>
 </div>
 
+
+<div class="wrapper-cards">
+  <div class="container">
+    <div class="row slick-class">
+      <% @challenges.each do |challenge| %>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card">
+            <div class="card-picture">
+              <% if challenge.picture.url %>
+                <%=image_tag challenge.picture.url(:thumb) %>
+              <% else %>
+                <div class="no-img"><i class="fa fa-image"></i></div>
+              <% end %>
+            </div>
+             <div class="card-desc text-center">
+
+              <h4>
+                <%= challenge.title %>
+              </h4>
+            </div>
+            <%=link_to challenge.title, challenge_path(challenge), class: "card-link" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class='container'>
+  <hr>
+  <h2 class='text-center'>
+    How it works
+    <hr class='hr-line'>
+  </h2>
+  <div class='row text-center components'>
+    <div class='col-xs-12 col-sm-6 col-md-4'>
+      <%= image_tag("Idea-150.png", size: "150x150") %>
+      <h3>Come up with a challenge</h3>
+      <p>Or ask to join one</p>
+    </div>
+    <div class='col-xs-12 col-sm-6 col-md-4'>
+      <%= image_tag("friends2.jpg", size: "150x150", class: "img-circle") %>
+      <h3>Invite your friends</h3>
+      <p></p>
+    </div>
+    <div class='col-xs-12 col-sm-6 col-md-4'>
+      <%= image_tag("heart.png") %>
+      <h3>Share and Love</h3>
+      <p>Discover what's new and be part of it </p>
+    </div>
+  </div>
+</div>
+
 <%= render 'cards' %>
+
