@@ -1,6 +1,6 @@
 <div class="wrapper-cards">
   <div class="container">
-    <h3 class='home-title'>Group</h3>
+    <h3 class='home-title-type'>Group Challenges</h3>
     <div class="row your-class">
 
       <% Challenge.where(yourself: false).sample(4).each do |challenge| %>
@@ -29,9 +29,9 @@
   </div>
 </div>
 
-<div class="wrapper-cards">
+<div class="wrapper-cards-self">
   <div class="container">
-    <h3 class='home-title'>Self</h3>
+    <h3 class='home-title-type'>Self Challenges</h3>
     <div class="row your-class">
 
       <% @self_challenges.each do |challenge| %>
