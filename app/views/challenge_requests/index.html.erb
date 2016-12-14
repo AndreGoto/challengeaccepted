@@ -5,7 +5,7 @@
       <thead>
       <th class='col-xs-3'>User</th>
       <th class='col-xs-7'>Challenge</th>
-      <th class='col-xs-1'>Aprove</th>
+      <th class='col-xs-1'>Approve</th>
       <th class='col-xs-1'>Deny</th>
       </thead>
       <% @requests.each do |challenge_requests| %>
@@ -31,7 +31,23 @@
           </tr>
         <% end %>
       <% end %>
-
     </table>
   </div>
+
+  <div class="row">
+    <h1 class='text-center'>Waiting aproval</h1>
+    <table class='table'>
+      <thead>
+      <th class='col-xs-3'>Challenge</th>
+      <th class='col-xs-7'>Members</th>
+      </thead>
+      <% @waiting_aproval.each do |request| %>
+        <tr>
+          <td class='col-xs-7'><%= Challenge.find(request.challenge_id).title %></td>
+          <td class='col-xs-1'><%= Challenge.find(request.challenge_id).members.count %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
 </div>

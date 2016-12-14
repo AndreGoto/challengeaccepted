@@ -4,7 +4,6 @@ class ChallengesController < ApplicationController
   before_action :set_members, only: [:show, :voting]
 
   def index
-    # @challenges = Challenge.all
     @challenges = policy_scope(Challenge)
   end
 
@@ -16,12 +15,12 @@ class ChallengesController < ApplicationController
     @status_days_to_finish = ((status_total - status_until_now) < 0) ? 0 : status_total - status_until_now
 
     @challenge_message = ChallengeMessage.new
-    @members = Member.where(challenge_id: @challenge.id)
 
-    @current_member = Member.where(challenge_id: @challenge.id, user_id: current_user.id).last
-
+    if current_user.present?
+      @current_member = Member.where(challenge_id: @challenge.id, user_id: current_user.id).last
+    end
     user_challenge_messages = []
-    @members.each do |member|
+    Member.where(challenge_id: @challenge.id).each do |member|
       user_challenge_messages << ChallengeMessage.where(member_id: member.id)
     end
     @challenge_messages = user_challenge_messages.flatten.sort_by { |k| k[:created_at] }
@@ -88,7 +87,7 @@ class ChallengesController < ApplicationController
       member.save
       flash[:notice] = "Your vote has been confirmed!"
     else
-      flash[:alert] = "Vote canceled. You already voted."
+      flash[:alert] = "You already voted!"
     end
     redirect_to challenge_path(@challenge.id)
   end
@@ -99,9 +98,9 @@ class ChallengesController < ApplicationController
     if @request.empty?
       @request = ChallengeRequest.create(user_id: current_user.id,
                                     challenge_id: params[:challenge_id])
-      flash[:notice] = "Your request was send."
+      flash[:notice] = "Your request was sent."
     else
-      flash[:alert] = "You already have requested it."
+      flash[:alert] = "You have already requested it."
     end
     authorize @request
     redirect_to challenge_path(params[:challenge_id])
@@ -114,7 +113,7 @@ class ChallengesController < ApplicationController
   end
 
   def set_members
-    @members = @challenge.members
+    @members = @challenge.members.where(inative: false)
   end
 
   def set_challenge
@@ -123,7 +122,6 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    #params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :guest_email)
      params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :voted_user_id, :member_id, invites_attributes: [:guest_email])
   end
 end

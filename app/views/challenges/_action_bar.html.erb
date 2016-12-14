@@ -4,17 +4,29 @@
       <div class="col-sm-12 text-center">
         <% if !signed_in? %>
           <p>You're not logged... :(</p>
-        <% elsif @status_days_to_finish.to_i >= 100 %>
-
-        <% elsif (Member.where(user_id: current_user.id, challenge_id: @challenge.id).empty?) && (@challenge.invites.where(guest_email: current_user.email)).empty? && current_user.id != @challenge.owner.id %>
-          <p>You're not invited... :(</p>
-          <%= link_to "Request to join", challenge_request_invite_path(@challenge), method: :post,
-                      class:'btn btn-success' %>
         <% else %>
-          <% if @challenge.users.where(id: current_user.id).empty?%>
-            <%= button_to "Accept Challenge", challenge_members_path(@challenge), method: :post, class: 'btn btn-lg btn-success btn-block'%>
+          <% if Member.where(user_id: current_user.id, challenge_id: @challenge.id).empty? %>
+            <% if (@challenge.invites.where(guest_email: current_user.email)).empty? %>
+              <p>You're not invited... :(</p>
+              <%= link_to "Request to join", challenge_request_invite_path(@challenge), method: :post,
+                          class:'btn btn-success' if @status_percentage.to_i < 100 %>
+            <% else %>
+              <%= button_to "Accept Challenge", challenge_members_path(@challenge), method: :post, class: 'btn btn-lg btn-success btn-block'%>
+            <% end %>
           <% else %>
-            <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-lg btn-success btn-block"  %>
+            <% if !Member.where(user_id: current_user.id, challenge_id: @challenge.id, inative: true).empty? %>
+              <p>You cannot re-join to this challenge... :(</p>
+            <% else %>
+              <%= link_to "Invite friends", invite_challenge_path, :class => "btn btn-lg btn-success" if @status_percentage.to_i < 100 %>
+              <%= link_to "It is time to vote", voting_challenge_path(@challenge.id), class: "btn btn-lg btn-warning" if @status_percentage.to_i >= 100 %>
+              <%= link_to "Leave",
+                          challenge_member_path( @challenge.id,
+                                                 Member.where(user_id: current_user.id,
+                                                         challenge_id: @challenge.id).first.id),
+                          method: :PATCH, data: { confirm: "Are you sure?" },
+                          class: "btn btn-lg btn-danger" if (@status_percentage.to_i < 100) && (@challenge.owner != current_user)
+              %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

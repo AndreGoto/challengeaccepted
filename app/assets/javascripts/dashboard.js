@@ -1,20 +1,15 @@
- $("#on-going-challenge").click(function() {
-    $('.on-going-challenge').show();
-    $('.finished-challenge').hide();
-    $('.pending-challenge').hide();
-  });
+$( document ).ready(function() {
+  $(".tab").click(function() {
+    $("#pending-challenge").removeClass( "active" );
+    $("#on-going-challenge").removeClass( "active" );
+    $("#finished-challenge").removeClass( "active" );
 
-  $("#finished-challenge").click(function() {
-    $('.finished-challenge').show();
-    $('.on-going-challenge').hide();
-    $('.pending-challenge').hide();
-  });
+    $(this).addClass( "active" );
 
-  $("#pending-challenge").click(function() {
-    $('.pending-challenge').show();
-    $('.finished-challenge').hide();
-    $('.on-going-challenge').hide();
-  });
+    $(".tab-pending-challenge").addClass("tab-invisible");
+    $(".tab-on-going-challenge").addClass("tab-invisible");
+    $(".tab-finished-challenge").addClass("tab-invisible");
+    $(".tab-"+this.id).removeClass("tab-invisible");
 
-  $('.finished-challenge').hide();
-    $('.pending-challenge').hide();
+  });
+});

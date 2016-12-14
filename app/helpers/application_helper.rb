@@ -26,6 +26,7 @@ module ApplicationHelper
   def all_users_request(user)
     unless user.nil?
       challenges = Challenge.where(id_user_owner: current_user.id)
+      @waiting_aproval = ChallengeRequest.where(user_id: current_user.id).count
       ct = 0
       unless challenges.empty?
         challenges.each do |challenge|
