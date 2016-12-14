@@ -19,10 +19,23 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
       else
         '<div class="message invert">'
 
-    now = new Date(Date.now());
+    now = new Date(Date.now())
     formatted = now.getHours() + ":" + now.getMinutes()
 
-    $('#messages').append(m_current_member + '<p class="balloon"><span class="author">' + data['member_name'] + '<span class="time"> ~ ' + now.toLocaleDateString() + ' at ' + formatted + ' ~ </span></span>' + data['message'] + '</p>' + m_picture(data['member_picture']) + '</div>')
+    m_message_f = (m_message) ->
+      yt_regexp = /^https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]*)/
+      yt_valid_link =  m_message.replace(/\/watch\?v=/g, '/embed/')
+      img_regexp = /\Ahttp.*(jpeg|jpg|gif|png)\Z/
+      m_valid_message =
+        if(m_message.match(yt_regexp) != null)
+          '<iframe width="300" height="180" src="' + yt_valid_link + '" frameborder="0" allowfullscreen style="margin-top: 6px;"></iframe>'
+        # elseif(m_message.match(img_regexp) != null)
+        #   '<img src="' + data['message'] + '" alt="" width="300" >'
+        else
+          m_message
+      return m_valid_message
+
+    $('#messages').append(m_current_member + '<p class="balloon"><span class="author">' + data['member_name'] + '<span class="time"> ~ ' + now.toLocaleDateString() + ' at ' + formatted + ' ~ </span></span>' + m_message_f(data['message']) + '</p>' + m_picture(data['member_picture']) + '</div>')
     $("#messages").animate({
       scrollTop: $('#messages .messages-wrapper').height()
     }, 400)
@@ -32,6 +45,6 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 
 
 $('#chat_speaker_member_button').on 'click', (event) ->
-  App.chat.speak($('#chat_speaker_member_txt').val(), $('#chat_speaker_member_id').val())
   event.preventDefault()
-  $('#chat_speaker_member_txt').val(" ")
+  App.chat.speak($('#chat_speaker_member_txt').val(), $('#chat_speaker_member_id').val())
+  $('#chat_speaker_member_txt').val("")

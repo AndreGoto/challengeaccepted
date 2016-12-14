@@ -12,56 +12,67 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 dashboard text-center">
 
       <div class='tab-pending-challenge tab-invisible'>
-        <h3>Pending challenges</h3>
+        <h3 class='challenge-status-section'>Pending challenges</h3>
           <!-- #challenges in which you requested to join and is waiting for the answer -->
-          <% @waiting_approval.each do |pendingchallenge| %>
-            <div class='card-dashboard'>
-              <% if pendingchallenge.challenge.picture %>
+          <% if @waiting_approval.empty? %>
+            <p class='text-center'>You don't have any pending challenge!</p>
+          <% else %>
+            <% @waiting_approval.each do |pendingchallenge| %>
+              <div class='card-dashboard'>
+                <% if pendingchallenge.challenge.picture %>
                   <%= link_to challenge_path(pendingchallenge.challenge) do %>
                     <%= cl_image_tag(pendingchallenge.challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
                   <% end %>
                 <%#= cl_image_tag(pendingchallenge.challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
-              <% else %>
-                <div class="no-img"><i class="fa fa-image"></i></div>
-              <% end %><br>
-              <%=link_to pendingchallenge.challenge.title, challenge_path(pendingchallenge.challenge)%><br>
-            </div>
-          <% end %>
-          <%#= @waiting_approval.last.challenge.title   %>
+                <% else %>
+                  <div class="no-img"><i class="fa fa-image"></i></div>
+                <% end %><br>
+                <%=link_to pendingchallenge.challenge.title, challenge_path(pendingchallenge.challenge)%><br>
+              </div>
+            <% end %>
+          <% end%> <%#= @waiting_approval.last.challenge.title   %>
       </div>
 
 
       <div class='tab-on-going-challenge'>
         <h3 class='challenge-status-section'>On going challenges</h3>
 
-        <% @challenges_progress.each do |challenge| %>
-          <div class='card-dashboard'>
-            <% if challenge.picture %>
-              <%= link_to challenge_path(challenge) do %>
-                <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
-              <% end %>
-            <% else %>
-              <div class="no-img"><i class="fa fa-image"></i></div>
-            <% end %><br>
-            <%=link_to challenge.title, challenge_path(challenge)%><br>
-          </div>
+        <% if @challenges_progress.empty? %>
+          <p>Why haven't you created a challenge yet? Or joined one? Come on!</p>
+        <% else %>
+          <% @challenges_progress.each do |challenge| %>
+            <div class='card-dashboard'>
+              <% if challenge.picture %>
+                <%= link_to challenge_path(challenge) do %>
+                  <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+                <% end %>
+              <% else %>
+                <div class="no-img"><i class="fa fa-image"></i></div>
+              <% end %><br>
+              <%=link_to challenge.title, challenge_path(challenge)%><br>
+            </div>
+          <% end %>
         <% end %>
       </div>
 
       <div class='tab-finished-challenge tab-invisible'>
-        <h3>Your finished challenges</h3>
+        <h3 class='challenge-status-section'>Your finished challenges</h3>
 
-        <% @challenges_ended.each do |challenge| %>
-          <div class='card-dashboard'>
-            <% if challenge.picture %>
-              <%= link_to challenge_path(challenge) do %>
-                <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
-              <% end %>
-            <% else %>
-              <div class="no-img"><i class="fa fa-image"></i></div>
-            <% end %><br>
-            <%=link_to challenge.title, challenge_path(challenge)%><br>
-          </div>
+        <% if @challenges_ended.empty? %>
+          <p>You still haven't completed a challenge.</p>
+        <% else %>
+          <% @challenges_ended.each do |challenge| %>
+            <div class='card-dashboard'>
+              <% if challenge.picture %>
+                <%= link_to challenge_path(challenge) do %>
+                  <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+                <% end %>
+              <% else %>
+                <div class="no-img"><i class="fa fa-image"></i></div>
+              <% end %><br>
+              <%=link_to challenge.title, challenge_path(challenge)%><br>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <%= render 'self_challenges' %>
