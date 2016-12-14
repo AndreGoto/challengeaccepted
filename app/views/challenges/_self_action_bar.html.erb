@@ -1,0 +1,23 @@
+<div class="wrapper-action-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <% if !signed_in? %>
+          <p>You're not logged... :/</p>
+        <% else %>
+          <% if Member.where(user_id: current_user.id, challenge_id: @challenge.id).empty? %>
+            <%= link_to "Request to join", challenge_members_path(@challenge), method: :post, class: 'btn btn-success' %>
+          <% else %>
+            <%= link_to "Leave",
+                        challenge_member_path( @challenge.id,
+                                               @challenge.members.find_by(user_id: current_user) ),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" },
+                        class: "btn btn-lg btn-danger"
+              %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

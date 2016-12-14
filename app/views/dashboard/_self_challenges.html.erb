@@ -1,0 +1,16 @@
+<div class='tab-self-challenge tab-invisible'>
+  <h3>Self challenges</h3>
+
+  <% current_user.challenges.where(yourself: true).each do |challenge| %>
+    <div class='card-dashboard'>
+      <% if challenge.picture %>
+        <%= link_to challenge_path(challenge) do %>
+          <%= cl_image_tag(challenge.picture, width: 125, height: 125, crop: "scale", class: 'img-circle') %>
+        <% end %>
+      <% else %>
+        <div class="no-img"><i class="fa fa-image"></i></div>
+      <% end %><br>
+      <%=link_to challenge.title, challenge_path(challenge)%><br>
+    </div>
+  <% end %>
+</div>
