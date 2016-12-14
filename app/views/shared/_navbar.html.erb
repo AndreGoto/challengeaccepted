@@ -68,10 +68,8 @@
         </li>
       </ul>
     <% else %>
-      <div>
-        <%#= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <div class='text-center'>
         <%=link_to raw('<i class="fa fa-user-circle "></i>'), new_user_session_path %>
-        <%#=link_to raw('Login <i class="fa fa-search"></i>'), new_user_session_path %>
       </div>
     <% end %>
     </div>
