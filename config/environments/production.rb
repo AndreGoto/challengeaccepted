@@ -1,8 +1,4 @@
 Rails.application.configure do
-
-  config.middleware.use ChatActionCable
-  config.web_socket_server_url = "wss://challenge-lab.herokuapp.com/"
-
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: "http://por-um-mundo-melhor.herokuapp.com" }
   # Settings specified here will take precedence over those in config/application.rb.
@@ -40,10 +36,12 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
+  config.middleware.use ChatActionCable
+  config.web_socket_server_url = "wss://challenge-lab.herokuapp.com/"
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'wss://challenge-lab.herokuapp.com/cable'
-  config.action_cable.allowed_request_origins = [ 'https://challenge-lab.herokuapp.com/', /https:\/\/challenge-lab.herokuapp.*/ ]
+  # config.action_cable.url = 'wss://challenge-lab.herokuapp.com/cable'
+  # config.action_cable.allowed_request_origins = [ 'https://challenge-lab.herokuapp.com/', /https:\/\/challenge-lab.herokuapp.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
