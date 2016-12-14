@@ -1,5 +1,8 @@
 Rails.application.configure do
 
+  config.middleware.use ChatActionCable
+  config.web_socket_server_url = "wss://challenge-lab.herokuapp.com/"
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: "http://por-um-mundo-melhor.herokuapp.com" }
   # Settings specified here will take precedence over those in config/application.rb.
