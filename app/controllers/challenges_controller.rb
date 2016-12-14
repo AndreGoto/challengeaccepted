@@ -122,6 +122,6 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-     params.require(:challenge).permit(:title, :description, :rules, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :voted_user_id, :member_id, invites_attributes: [:guest_email])
+     params.require(:challenge).permit(:title, :description, :rules, :at_stake, :picture, :start_date, :end_date, :id_user_owner, :picture_cache, :voted_user_id, :member_id, invites_attributes: [:guest_email])
   end
 end
