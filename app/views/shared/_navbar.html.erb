@@ -50,6 +50,7 @@
   <!-- Dropdown list appearing on mobile only -->
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
+    <% if user_signed_in? %>
       <%= generate_profile_image(current_user) %>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li><%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
@@ -66,6 +67,13 @@
           <% end %>
         </li>
       </ul>
+    <% else %>
+      <div>
+        <%#= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <%=link_to raw('<i class="fa fa-user-circle "></i>'), new_user_session_path %>
+        <%#=link_to raw('Login <i class="fa fa-search"></i>'), new_user_session_path %>
+      </div>
+    <% end %>
     </div>
   </div>
 </div>
