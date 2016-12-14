@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   def index
     @challenges = policy_scope(Challenge)
 
-    challenges = current_user.challenges
+    challenges = current_user.challenges.where(yourself: false)
 
     @challenges_progress = []
     @challenges_ended = []

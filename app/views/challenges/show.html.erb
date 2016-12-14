@@ -8,6 +8,15 @@
     <h1><%= @challenge.title %></h1>
   </div>
 </div>
-<%= render 'action_bar' %>
-<%= render 'status_bar' %>
-<%= render 'tabs' %>
+<% if @challenge.yourself %>
+  <%= render 'self_action_bar' %>
+  <div class="container">
+    <p class='text-center'><strong>About</strong></p>
+    <%= render 'about' %>
+  </div>
+<% else %>
+  <%= render 'action_bar' %>
+  <%= render 'status_bar' %>
+  <%= render 'tabs' %>
+<% end %>
+

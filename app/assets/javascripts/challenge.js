@@ -19,27 +19,27 @@ $( document ).ready(function() {
     todayHighlight: true
   });
 
-  $('.slick-class').slick({
+  $('.your-class').slick({
     dots: false,
     infinite: true,
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 4,
-    prevArrow: false,
-    nextArrow: false,
+    prevArrow: true,
+    nextArrow: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3
+          slidesToShow: 4,
+          slidesToScroll: 4
         }
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToShow: 3,
+          slidesToScroll: 3
         }
       },
       {
@@ -58,8 +58,9 @@ $( document ).ready(function() {
     objDiv.scrollTop = objDiv.scrollHeight;
 
     var objDiv2 = $(".bg-main-blue")[0];
-    objDiv2.scrollTop = objDiv2.scrollHeight;
-
+    if (objDiv2) {
+      objDiv2.scrollTop = objDiv2.scrollHeight;
+    }
   }
 
 });
