@@ -34,4 +34,12 @@ class MembersController < ApplicationController
     member.inative = true
     redirect_to challenge_path(params[:challenge_id]) if member.save
   end
+
+  def destroy
+    member = Member.find(params[:id])
+    member.destroy
+    authorize member
+    flash[:alert] = "You left the challenge :/"
+    redirect_to root_path
+  end
 end
