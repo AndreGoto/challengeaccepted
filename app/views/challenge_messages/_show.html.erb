@@ -1,19 +1,28 @@
 <% unless current_user.nil? %>
   <% if message.member.user.id == current_user.id %>
     <div class="message">
-      <p class="balloon"><span class="author"><%= Member.find(message.member_id).user.name %><span class="time"> ~ <%= (ChallengeMessage.find(message.id).created_at).strftime("%m/%d/%Y at %H:%M") %> ~ </span></span>
-     <%= message.message %></p>
-     <% unless Member.find(message.member_id).user.picture.url.nil? %>
-      <%=image_tag Member.find(message.member_id).user.picture.url(:bright_face), class: "avatar" %>
-     <% end %>
-    </div>
   <% else %>
     <div class="message invert">
-      <p class="balloon"><span class="author"><%= Member.find(message.member_id).user.name %><span class="time"> ~ <%= (ChallengeMessage.find(message.id).created_at).strftime("%m/%d/%Y at %H:%M") %> ~ </span></span>
-     <%= message.message %></p>
-     <% unless Member.find(message.member_id).user.picture.url.nil? %>
-      <%=image_tag Member.find(message.member_id).user.picture.url(:bright_face), class: "avatar" %>
-     <% end %>
-    </div>
   <% end %>
+    <p class="balloon">
+      <span class="author"><%= Member.find(message.member_id).user.name %>
+        <span class="time"> ~ <%= (ChallengeMessage.find(message.id).created_at).strftime("%m/%d/%Y at %H:%M") %> ~ </span>
+      </span>
+
+      <% yt_regexp = /^https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]*)/ %>
+      <% yt_valid_link =  (message.message).gsub(/\/watch\?v=/, '/embed/')  %>
+      <% img_regexp = /\Ahttp.*(jpeg|jpg|gif|png)\Z/ %>
+      <% if (message.message =~ yt_regexp) == 0 %>
+        <iframe width="300" height="180" src="<%= yt_valid_link %>" frameborder="0" allowfullscreen style="margin-top: 6px;"></iframe>
+      <% elsif (message.message =~ img_regexp) != nil %>
+        <img src="<%= message.message %>" alt="" width="300" >
+      <% else %>
+        <%= message.message %>
+      <% end %>
+
+   </p>
+   <% unless Member.find(message.member_id).user.picture.url.nil? %>
+    <%=image_tag Member.find(message.member_id).user.picture.url(:bright_face), class: "avatar" %>
+   <% end %>
+  </div>
 <% end %>
