@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20161213182532) do
     t.integer  "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "picture"
     t.index ["member_id"], name: "index_challenge_messages_on_member_id", using: :btree
   end
 
@@ -30,6 +31,14 @@ ActiveRecord::Schema.define(version: 20161213182532) do
     t.datetime "updated_at",   null: false
     t.index ["challenge_id"], name: "index_challenge_requests_on_challenge_id", using: :btree
     t.index ["user_id"], name: "index_challenge_requests_on_user_id", using: :btree
+  end
+
+  create_table "challengemessages", force: :cascade do |t|
+    t.string   "message"
+    t.integer  "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_challengemessages_on_member_id", using: :btree
   end
 
   create_table "challenges", force: :cascade do |t|
@@ -93,6 +102,7 @@ ActiveRecord::Schema.define(version: 20161213182532) do
   add_foreign_key "challenge_messages", "members"
   add_foreign_key "challenge_requests", "challenges"
   add_foreign_key "challenge_requests", "users"
+  add_foreign_key "challengemessages", "members"
   add_foreign_key "invites", "challenges"
   add_foreign_key "members", "challenges"
   add_foreign_key "members", "users"

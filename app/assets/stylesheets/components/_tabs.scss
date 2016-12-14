@@ -54,6 +54,7 @@
       border-radius: 10px;
       padding: 10px 20px;
       margin: 0 0 15px;
+      word-wrap: break-word;
       &:after {
         content: "";
         display: block; /* reduce the damage in FF3.0 */
