@@ -4,12 +4,13 @@
       <div class="col-sm-12 text-center">
         <% if !signed_in? %>
           <p>You're not logged... :(</p>
+          <%= link_to raw('<i class="fa fa-user-o"></i> Login'), new_user_session_path, class: 'btn btn-primary' %>
         <% else %>
           <% if Member.where(user_id: current_user.id, challenge_id: @challenge.id).empty? %>
             <% if (@challenge.invites.where(guest_email: current_user.email)).empty? %>
               <p>You're not invited... :(</p>
               <%= link_to "Request to join", challenge_request_invite_path(@challenge), method: :post,
-                          class:'btn btn-success' if @status_percentage.to_i < 100 %>
+                          class: 'btn btn-success' if @status_percentage.to_i < 100 %>
             <% else %>
               <%= button_to "Accept Challenge", challenge_members_path(@challenge), method: :post, class: 'btn btn-lg btn-success btn-block'%>
             <% end %>
