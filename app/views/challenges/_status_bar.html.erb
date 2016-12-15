@@ -10,14 +10,14 @@
           <% color = "progress-bar-danger"  if @status_percentage.to_i  <  25  %>
 
           <div class="progress-bar <%=color%> progress-bar-striped active" role="progressbar" aria-valuenow="<%= @status_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @status_percentage %>%;">
-            <span class="sr-only"><%= @status_percentage %>% Complete</span>
+            <span><%= @status_percentage %>% Complete</span>
           </div>
         </div>
       </div>
       <div class="col-sm-6 text-center">
         <ul class="list-inline progress-bar-info">
           <li class="text-left">
-            <strong><%= @status_days_to_finish %></strong> <br>
+            <strong><%= (@status_days_to_finish == 0) ? 'Finished' : @status_days_to_finish  %></strong> <br>
             Days to finish
           </li>
           <li class="text-left">
