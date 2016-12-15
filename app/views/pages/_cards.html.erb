@@ -1,11 +1,14 @@
 <div class="wrapper-cards">
   <div class="container">
-    <h3 class='home-title-type'>Group Challenges</h3>
+    <h3 class='home-title-type'>
+      <i class="fa fa-group"></i>
+      Group Challenges
+    </h3>
     <div class="row your-class">
 
       <% Challenge.where(yourself: false).sample(4).each do |challenge| %>
         <% unless challenge.yourself %>
-          <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="col-sm-6 col-md-6 col-lg-3">
             <div class="card">
               <div class="card-picture">
                 <% if challenge.picture.url %>
@@ -31,12 +34,15 @@
 
 <div class="wrapper-cards-self">
   <div class="container">
-    <h3 class='home-title-type'>Self Challenges</h3>
+    <h3 class='home-title-type'>
+      <i class="fa fa-user"></i>
+      Self Challenges
+    </h3>
     <div class="row your-class">
 
       <% @self_challenges.each do |challenge| %>
         <% if challenge.yourself %>
-          <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="col-sm-6 col-md-6 col-lg-3">
             <div class="card">
               <div class="card-picture">
                 <% if challenge.picture.url %>

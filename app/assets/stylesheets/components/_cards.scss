@@ -1,17 +1,16 @@
 .wrapper-cards {
-  padding: 30px 0;
+  padding: 15px 0;
 }
 
 .card {
   margin-bottom: 30px;
-  background-color: $petro-blue;
+  background-color: white;
   position: relative;
   border-radius: 5px;
   overflow: hidden;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.07), 0 1px 0 0 rgba(0, 0, 0, 0.03);
   .card-picture {
     overflow: hidden;
-    height: 150px;
-    position: relative;
     img {
       max-width: 100%;
       background-color: #9BBFD7;
@@ -47,10 +46,13 @@
   }
   .card-desc {
     font-size: 0.8em;
-    // height: 62px;
     overflow: hidden;
     margin: 5px 0;
-    color: white;
+    h4 {
+      font-family: $base-font;
+      overflow: hidden;
+      height: 46px;
+    }
   }
   .btn {
     display: block;
