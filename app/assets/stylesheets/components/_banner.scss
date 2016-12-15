@@ -16,6 +16,17 @@
     left: 0;
     z-index: 0;
   }
+  &.banner-with-video {
+    overflow: hidden;
+    #player {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      margin-top: -20%;
+    }
+
+  }
 }
 
 .banner-home,
@@ -55,6 +66,33 @@
   font-weight: lighter;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 20px;
+}
+
+.videoWrapper {
+  position: relative !important;
+  padding-bottom: 56.25% !important; /* 16:9 */
+  padding-top: 25px !important;
+  height: 0 !important;
+}
+.videoWrapper object,
+.videoWrapper embed {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@media screen and (max-width: 900px) {
+  .banner {
+    // -
+    &.banner-with-video {
+      // -
+      #player {
+        display: none;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 700px) {
