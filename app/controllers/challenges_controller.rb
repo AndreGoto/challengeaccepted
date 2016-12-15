@@ -13,7 +13,9 @@ class ChallengesController < ApplicationController
     status_until_now = (Date.today - @challenge.start_date).to_i
     @status_percentage = (status_until_now * 100)/status_total
     @status_percentage = 100 if @status_percentage > 100
+    @status_percentage = 0 if @status_percentage < 0
     @status_days_to_finish = ((status_total - status_until_now) < 0) ? 0 : status_total - status_until_now
+    @status_days_to_start  = (@challenge.start_date - Date.today).to_i
 
     @challenge_message = ChallengeMessage.new
 
@@ -83,7 +85,8 @@ class ChallengesController < ApplicationController
   end
 
   def send_vote
-    member = Member.find(params[:member_id])
+    member = Member.where(user_id: params[:user_id], challenge_id: params[:id])
+    member = member[0]
     unless member_voted?(member)
       member.voted_id = params[:voted_user_id].to_i
       member.save

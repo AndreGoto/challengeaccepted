@@ -17,8 +17,15 @@
       <div class="col-sm-6 text-center">
         <ul class="list-inline progress-bar-info">
           <li class="text-left">
-            <strong><%= (@status_days_to_finish == 0) ? 'Finished' : @status_days_to_finish  %></strong> <br>
-            Days to finish
+            <% if @status_days_to_start > 0 %>
+              <strong><%= @status_days_to_start %></strong>
+              <br>
+              Days to start
+            <% else %>
+              <strong><%= (@status_days_to_finish == 0) ? 'Finished' : @status_days_to_finish %></strong>
+              <br>
+              Days to finish
+            <% end %>
           </li>
           <li class="text-left">
             <strong><%= @challenge.members.count %></strong> <br>
