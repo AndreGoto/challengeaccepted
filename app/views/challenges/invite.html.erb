@@ -11,7 +11,9 @@
             <span style="margin-right: 15px;">
             <%= link_to_add_association 'Add', f, :invites, class: 'btn btn-primary' %>
             </span>
-            <%= f.button :submit,  'Send', class: 'btn btn-success'  %>
+            <%#= f.button :submit,  'Send', class: 'btn btn-success'  %>
+            <%= link_to "Send", challenge_path(@challenge), data: { confirm: "Your invitation will be sent" },
+                        class: 'btn btn-success'%>
           </p>
         <%end%>
       </div>
