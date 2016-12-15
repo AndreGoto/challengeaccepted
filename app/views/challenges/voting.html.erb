@@ -1,23 +1,29 @@
 <div class="container">
-  <div class="text-center"> <h3>Choose one member to get your vote!</h3></div>
-  <% @members.each do |member| %>
-    <!--if this member challenge is equivalent to this challenge id go.. -->
-    <div class ="col-sm-2 photo-margin">
-      <div class="text-center">
-        <% if member.challenge_id == @challenge.id %>
-          <!-- if there is has facebook picture, this guy was connected by facebook -->
-          <%if member.user.facebook_picture_url %>
-            <%= link_to (generate_profile_photo(member.user)), send_vote_challenge_path(@challenge, voted_user_id: member.user.id, member_id: member.id), data: { confirm: "Confirme o seu voto para #{member.user.first_name}." } %>
-            <br>
-            <%= member.user.first_name %>
-            <%= member.user.last_name %>
-          <%else%>
-            <%= link_to (generate_profile_photo(member.user)), send_vote_challenge_path(@challenge, voted_user_id: member.user.id, member_id: member.id), data: { confirm: "Confirme o seu voto para #{member.user.name}." } %>
-            <br>
-            <%= member.user.name %>
-          <%end%>
-        <%end%>
-      </div>
-    </div>
-  <%end%>
+  <div class="row">
+    <% unless @members.where(challenge_id: @challenge.id, user_id: current_user.id, voted_id: nil).empty? %>
+      <h3 class="text-center">Voting time!</h3>
+      <% @members.where(challenge_id: @challenge.id).each do |member| %>
+        <div class ="col-sm-2 photo-margin text-center">
+          <%= generate_profile_photo(member.user) %>
+          <br><%= member.user.name %><br>
+          <%= link_to "Vote", send_vote_challenge_path(@challenge, voted_user_id: member.user.id, member_id: member.id),
+                      data: { confirm: "Vote to #{member.user.name}?" }, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    <% else %>
+      <h3 class="text-center">Who's gonna win the challengex?</h3>
+      <% @members.each do |member| %>
+        <div class ="col-sm-2 photo-margin text-center">
+          <%= generate_profile_photo(member.user) %>
+          <br><%= member.user.name %>
+          <br>Votes <%= ( @winner[member.user_id] * 100.0 / @members.where('voted_id IS NOT NULL').count ) %>%
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="container">
+  <div class="row" style="padding-top: 50px">
+    <div class="text-center"><%= link_to "Back", :back, class: 'btn btn-primary'%></div>
+  </div>
 </div>

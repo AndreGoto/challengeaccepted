@@ -78,6 +78,7 @@ class ChallengesController < ApplicationController
   end
 
   def voting
+    @winner = @members.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:voted_id]] += 1 }
   end
 
   def send_vote
