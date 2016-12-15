@@ -1,19 +1,19 @@
-<div class='banner banner-home'>
+<div class='banner banner-home banner-with-video'>
+  <div id="player"></div>
   <div class="shadow"></div>
   <div class='container'>
     <div class='banner-content'>
       <div>
         <h1>Challenge your friends</h1>
-        <p><strong>Motivate each other :)</strong></p>
-        <%=link_to 'Start a challenge', new_challenge_path, class: "btn-create btn-lg" %>
-        <%=link_to raw('Explore <i class="fa fa-search"></i>'), challenges_path, class: "btn-lg btn-explore" %>
+        <p><strong>Motivate each other :)</strong></p> <br>
+        <%=link_to raw('<i class="fa fa-flag"></i> Start a challenge'), new_challenge_path, class: "btn-create btn-lg" %>
       </div>
     </div>
   </div>
 </div>
 
 <div class='container home-text'>
-  <h2 class='home-title'>Staff picks <i class="fa fa-heart"></i></h2>
+  <h2>Staff picks <i class="fa fa-heart"></i></h2>
 </div>
 
 <%= render 'cards' %>
@@ -43,3 +43,72 @@
   </div>
 </div>
 
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        videoId: 'NugRZGDbPFU',
+        width: 1280,
+        height: 800,
+        playerVars: { 'autoplay': 1, 'controls': 0, 'loop': 1, 'rel': 0 },
+        events: {
+          'onReady': onPlayerReady,
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      event.target.playVideo();
+      event.target.mute();
+    }
+
+    $(function() {
+
+      // Find all YouTube videos
+      var $allVideos = $("iframe[src^='//www.youtube.com']"),
+
+          // The element that is fluid width
+          $fluidEl = $(".banner-with-video");
+
+      // Figure out and save aspect ratio for each video
+      $allVideos.each(function() {
+
+        $(this)
+          .data('aspectRatio', this.height / this.width)
+
+          // and remove the hard coded width/height
+          .removeAttr('height')
+          .removeAttr('width');
+
+      });
+
+      // When the window is resized
+      // (You'll probably want to debounce this)
+      $(window).resize(function() {
+
+        var newWidth = $fluidEl.width();
+
+        // Resize all videos according to their own aspect ratio
+        $allVideos.each(function() {
+
+          var $el = $(this);
+          $el
+            .width(newWidth)
+            .height(newWidth * $el.data('aspectRatio'));
+
+        });
+
+      // Kick off one resize to fix all videos on page load
+      }).resize();
+
+    });
+
+  <% end %>
+<% end %>

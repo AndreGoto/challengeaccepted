@@ -4,16 +4,15 @@
  * ------------------------------------- */
 .home-text {
   padding-top: 15px;
-  color: #72B7CF;
+  color: $green;
 }
 
-.fa-heart {
+.home-text .fa-heart {
   font-size: 25px;
-  color: red;
-}
-
-.fa-search {
-  font-size: 21px;
+  color: $red;
+  padding-bottom: 5px;
+  vertical-align: middle;
+  margin-top: -6px;
 }
 
 .hr-line {
