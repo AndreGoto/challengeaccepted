@@ -38,7 +38,7 @@ Rails.application.configure do
 
   config.middleware.use ChatActionCable
   # config.action_cable.disable_request_forgery_protection = true
-  # config.web_socket_server_url = "wss://challenge-lab.herokuapp.com"
+  config.web_socket_server_url = 'wss://www.challengeslab.com/cable'
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
   config.action_cable.url = 'wss://www.challengeslab.com/cable'
