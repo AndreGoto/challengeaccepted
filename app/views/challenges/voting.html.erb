@@ -6,17 +6,17 @@
         <div class ="col-sm-2 photo-margin text-center">
           <%= generate_profile_photo(member.user) %>
           <br><%= member.user.name %><br>
-          <%= link_to "Vote", send_vote_challenge_path(@challenge, voted_user_id: member.user.id, member_id: member.id),
+          <%= link_to "Vote", send_vote_challenge_path(@challenge, voted_user_id: member.user_id, user_id: current_user.id),
                       data: { confirm: "Vote to #{member.user.name}?" }, class: 'btn btn-primary' %>
         </div>
       <% end %>
     <% else %>
-      <h3 class="text-center">Who's gonna win the challengex?</h3>
+      <h3 class="text-center">Who's gonna win the challenge?</h3>
       <% @members.each do |member| %>
         <div class ="col-sm-2 photo-margin text-center">
           <%= generate_profile_photo(member.user) %>
           <br><%= member.user.name %>
-          <br>Votes <%= ( @winner[member.user_id] * 100.0 / @members.where('voted_id IS NOT NULL').count ) %>%
+          <br>Votes <%= ( @winner[member.user_id] * 100.0 / @members.where('voted_id IS NOT NULL').count ).round(2) %>%
         </div>
       <% end %>
     <% end %>

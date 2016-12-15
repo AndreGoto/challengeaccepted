@@ -4,9 +4,10 @@
       <div class="col-sm-12 text-center">
         <% if !signed_in? %>
           <p>You're not logged... :/</p>
+          <%= link_to raw('<i class="fa fa-user-o"></i> Login'), new_user_session_path, class: 'btn btn-primary' %>
         <% else %>
           <% if Member.where(user_id: current_user.id, challenge_id: @challenge.id).empty? %>
-            <%= link_to "Request to join", challenge_members_path(@challenge), method: :post, class: 'btn btn-success' %>
+            <%= link_to "Join", challenge_members_path(@challenge), method: :post, class: 'btn btn-success' %>
           <% else %>
             <%= link_to "Leave",
                         challenge_member_path( @challenge.id,
@@ -14,7 +15,7 @@
                         method: :delete,
                         data: { confirm: "Are you sure?" },
                         class: "btn btn-lg btn-danger"
-              %>
+            %>
           <% end %>
         <% end %>
       </div>
