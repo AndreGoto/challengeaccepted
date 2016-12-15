@@ -13,6 +13,13 @@ html, body {
   height: 100%;
 }
 
+a {
+  transition: all linear 200ms;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .page-wrap {
   min-height: 100%;
   position: relative;
@@ -52,7 +59,7 @@ html, body {
   background-color: white;
 }
 .bg-light-gray {
-  background-color: #f0f0f0;
+  background-color: #F7F7FF;
 }
 
 .bg-main-blue h1, .bg-main-blue .h1,

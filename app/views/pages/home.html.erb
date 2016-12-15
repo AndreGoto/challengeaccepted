@@ -5,9 +5,8 @@
     <div class='banner-content'>
       <div>
         <h1>Challenge your friends</h1>
-        <p><strong>Motivate each other :)</strong></p>
+        <p><strong>Motivate each other :)</strong></p> <br>
         <%=link_to 'Start a challenge', new_challenge_path, class: "btn-create btn-lg" %>
-        <%=link_to raw('Explore <i class="fa fa-search"></i>'), challenges_path, class: "btn-lg btn-explore" %>
       </div>
     </div>
   </div>
@@ -58,7 +57,7 @@
         videoId: 'NugRZGDbPFU',
         width: 1280,
         height: 800,
-        playerVars: { 'autoplay': 1, 'controls': 0, 'loop': 1 },
+        playerVars: { 'autoplay': 1, 'controls': 0, 'loop': 1, 'rel': 0 },
         events: {
           'onReady': onPlayerReady,
         }

@@ -1,7 +1,8 @@
 /* Main class */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: $petro-blue;
+  border-bottom: 1px solid #2a8c74;
+  background: $green;
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
@@ -13,14 +14,18 @@
 /* Logo */
 .navbar-wagon-brand {
   font-family: $header-font;
-  color: white;
+  color: rgba(255,255,255,0.7);
   font-size: 24px;
   font-weight: 700;
+  strong {
+    color: white;
+  }
 }
 
-.navbar-wagon-brand:hover {
+.navbar-wagon-brand:hover,
+.navbar-wagon-brand:hover strong {
   text-decoration: none;
-  color: $main-blue;
+  color: #2a8c74;
 }
 
 /* Optional class to fix the navbar on top */
@@ -37,7 +42,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: white;
 }
 
 /* Navbar item */
@@ -51,12 +55,11 @@
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #616668;
+  color: white;
   font-size: 14px;
-  background: white;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  opacity: .7;
   text-decoration: none;
 }
 
