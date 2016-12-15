@@ -37,7 +37,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   config.middleware.use ChatActionCable
-  config.action_cable.disable_request_forgery_protection = true
+  # config.action_cable.disable_request_forgery_protection = true
   # config.web_socket_server_url = "wss://challenge-lab.herokuapp.com"
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
