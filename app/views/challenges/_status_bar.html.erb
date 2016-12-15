@@ -22,7 +22,7 @@
               <br>
               Days to start
             <% else %>
-              <strong><%= (@status_days_to_finish == 0) ? 'Finished' : @status_days_to_finish %></strong>
+              <strong class="ended"><%= (@status_days_to_finish == 0) ? 'Finished' : @status_days_to_finish %></strong>
               <br>
               Days to finish
             <% end %>
