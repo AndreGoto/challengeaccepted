@@ -4,19 +4,20 @@
       <div class="col-sm-6">
         <div class="progress">
           <% color = "progress-bar-success" if @status_percentage.to_i  >= 100 %>
-          <% color = "progress-bar-info"    if (@status_percentage.to_i <= 75 && @status_percentage.to_i < 100) %>
-          <% color = "progress-bar-warning" if (@status_percentage.to_i <= 50 && @status_percentage.to_i < 75)  %>
-          <% color = "progress-bar-danger"  if (@status_percentage.to_i <= 25 && @status_percentage.to_i < 50)  %>
+          <% color = "progress-bar-primary" if (@status_percentage.to_i >= 75 && @status_percentage.to_i < 100) %>
+          <% color = "progress-bar-primary" if (@status_percentage.to_i >= 50 && @status_percentage.to_i < 75)  %>
+          <% color = "progress-bar-warning" if (@status_percentage.to_i >= 25 && @status_percentage.to_i < 50)  %>
+          <% color = "progress-bar-danger"  if @status_percentage.to_i  <  25  %>
 
-          <div class="progress-bar <%=color%> active" role="progressbar" aria-valuenow="<%= @status_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @status_percentage %>%;">
-            <span class="sr-only"><%= @status_percentage %>% Complete</span>
+          <div class="progress-bar <%=color%> progress-bar-striped active" role="progressbar" aria-valuenow="<%= @status_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @status_percentage %>%;">
+            <span><%= @status_percentage %>% Complete</span>
           </div>
         </div>
       </div>
       <div class="col-sm-6 text-center">
         <ul class="list-inline progress-bar-info">
           <li class="text-left">
-            <strong><%= @status_days_to_finish %></strong> <br>
+            <strong><%= (@status_days_to_finish == 0) ? 'Finished' : @status_days_to_finish  %></strong> <br>
             Days to finish
           </li>
           <li class="text-left">

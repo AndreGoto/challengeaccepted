@@ -12,6 +12,7 @@ class ChallengesController < ApplicationController
     status_total = (@challenge.end_date - @challenge.start_date).to_i
     status_until_now = (Date.today - @challenge.start_date).to_i
     @status_percentage = (status_until_now * 100)/status_total
+    @status_percentage = 100 if @status_percentage > 100
     @status_days_to_finish = ((status_total - status_until_now) < 0) ? 0 : status_total - status_until_now
 
     @challenge_message = ChallengeMessage.new
@@ -78,6 +79,7 @@ class ChallengesController < ApplicationController
   end
 
   def voting
+    @winner = @members.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:voted_id]] += 1 }
   end
 
   def send_vote

@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20161214194605) do
     t.integer  "id_user_owner"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.string   "at_stake"
     t.boolean  "yourself",      default: false
+    t.string   "at_stake"
   end
 
   create_table "invites", force: :cascade do |t|
