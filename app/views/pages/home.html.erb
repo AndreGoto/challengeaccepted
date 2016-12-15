@@ -6,14 +6,14 @@
       <div>
         <h1>Challenge your friends</h1>
         <p><strong>Motivate each other :)</strong></p> <br>
-        <%=link_to 'Start a challenge', new_challenge_path, class: "btn-create btn-lg" %>
+        <%=link_to raw('<i class="fa fa-flag"></i> Start a challenge'), new_challenge_path, class: "btn-create btn-lg" %>
       </div>
     </div>
   </div>
 </div>
 
 <div class='container home-text'>
-  <h2 class='home-title'>Staff picks <i class="fa fa-heart"></i></h2>
+  <h2>Staff picks <i class="fa fa-heart"></i></h2>
 </div>
 
 <%= render 'cards' %>
