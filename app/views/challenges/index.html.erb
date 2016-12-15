@@ -1,4 +1,5 @@
 <div class='banner-challenges'>
+  <div class="shadow-explore"></div>
   <div class='banner-challenges-content'>
     <div class="container">
       <h1 class='text-center explore-title'>Get some inspiration!</h1>
@@ -6,41 +7,51 @@
   </div>
 </div>
 
+<div class="row tabs tabs-dashboard">
+  <input type="button" id="group-challenge"  class="tab col-xs-6 col-sm-2 col-sm-offset-4 active" value="group challenges">
+  <input type="button" id="self-challenge" class="tab col-xs-6 col-sm-2" value="self challenges">
+</div>
+
 <div class="container">
-  <h3>Group</h3>
-  <div class='row'>
-    <% @challenges.where(yourself: false).each do |challenge| %>
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class='card-explore text-center'>
-          <% if challenge.picture %>
-            <%= link_to challenge_path(challenge) do %>
-              <%= cl_image_tag(challenge.picture, width: 150, height: 150, crop: "scale", class: 'img-circle') %>
-            <% end %>
-          <% else %>
-            <div class="no-img"><i class="fa fa-image"></i></div>
-          <% end %><br>
-          <%=link_to challenge.title, challenge_path(challenge)%>
-        </div>
-      </div>
-    <% end %>
-  </div>
 
-  <h3>Self</h3>
   <div class='row'>
-    <% @challenges.where(yourself: true).each do |challenge| %>
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class='card-explore text-center'>
-          <% if challenge.picture %>
-            <%= link_to challenge_path(challenge) do %>
-              <%= cl_image_tag(challenge.picture, width: 150, height: 150, crop: "scale", class: 'img-circle') %>
-            <% end %>
-          <% else %>
-            <div class="no-img"><i class="fa fa-image"></i></div>
-          <% end %><br>
-          <%=link_to challenge.title, challenge_path(challenge)%>
-        </div>
-      </div>
-    <% end %>
-  </div>
+    <div class='tab-group-challenge tab-invisible'>
 
+      <% @challenges.where(yourself: false).each do |challenge| %>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class='card-explore text-center'>
+            <% if challenge.picture %>
+              <%= link_to challenge_path(challenge) do %>
+                <%= cl_image_tag(challenge.picture, width: 150, height: 150, crop: "scale", class: 'img-circle') %>
+              <% end %>
+            <% else %>
+              <div class="no-img"><i class="fa fa-image"></i></div>
+            <% end %><br>
+            <%=link_to challenge.title, challenge_path(challenge)%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class='row'>
+      <div class='tab-self-challenge'>
+
+        <% @challenges.where(yourself: true).each do |challenge| %>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class='card-explore text-center'>
+              <% if challenge.picture %>
+                <%= link_to challenge_path(challenge) do %>
+                  <%= cl_image_tag(challenge.picture, width: 150, height: 150, crop: "scale", class: 'img-circle') %>
+                <% end %>
+              <% else %>
+                <div class="no-img"><i class="fa fa-image"></i></div>
+              <% end %><br>
+              <%=link_to challenge.title, challenge_path(challenge)%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
