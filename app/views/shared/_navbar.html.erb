@@ -8,7 +8,7 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
-      <%=link_to raw('<i class="fa fa-search"></i> Explore'), challenges_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%=link_to raw('<i class="fa fa-search"></i> Explore'), explore_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Profile picture and dropdown -->
       <a href="<%= challenge_requests_path %>" class="navbar-wagon-item">
         <div class="badge-container">
@@ -43,7 +43,7 @@
       </div>
 
     <% else %>
-      <%=link_to raw('<i class="fa fa-search"></i> Explore'), challenges_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%=link_to raw('<i class="fa fa-search"></i> Explore'), explore_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Login text link -->
       <%= link_to raw('<i class="fa fa-user-o"></i> Login'), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
@@ -56,12 +56,18 @@
       <%= generate_profile_image(current_user) %>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <% if user_signed_in? %>
+          <li class="game-on">
+            <p><strong>Game on</strong>, <%= current_user.name %></p>
+          </li>
           <li>
             <%= link_to edit_user_registration_path do %>
               <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
             <% end %>
           </li>
         <% else %>
+          <li>
+            <%=link_to raw('<i class="fa fa-search"></i> Explore'), explore_path, class: "navbar-wagon-item navbar-wagon-link" %>
+          </li>
           <li><%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
         <% end %>
         <li>
@@ -80,10 +86,11 @@
     <% else %>
       <div class='logout-only-mobile'>
         <%=link_to raw('<i class="fa fa-user-circle "></i>'), new_user_session_path %>
-        <%=link_to raw('<i class="fa fa-search"></i>'), challenges_path %>
+        <%=link_to raw('<i class="fa fa-search"></i>'), explore_path %>
       </div>
     <% end %>
     </div>
   </div>
-</div>
+  <!-- END: Dropdown list appearing on mobile only -->
 
+</div>
