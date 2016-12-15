@@ -9,7 +9,7 @@
 
 <div class='container'>
   <div class='row '>
-    <!-- <div class="col-xs-12 col-sm-6 col-sm-offset-3 dashboard text-center"> -->
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 dashboard text-center">
 
       <div class='tab-pending-challenge tab-invisible'>
         <h3 class='challenge-status-section'>Pending challenges</h3>
@@ -38,7 +38,7 @@
         <h3 class='challenge-status-section'>On going challenges</h3>
 
         <% if @challenges_progress.empty? %>
-          <p>Why haven't you created a challenge yet? Or joined one? Come on!</p>
+          <p>Create or join a challenge, hurry up!</p>
         <% else %>
           <% @challenges_progress.each do |challenge| %>
             <div class='card-dashboard'>
