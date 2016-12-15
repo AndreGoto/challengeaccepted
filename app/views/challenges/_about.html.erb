@@ -1,4 +1,4 @@
-<p class="text-center"><%= @challenge.description %></p>
+<p class="text-center"><%= h(@challenge.description).gsub(/\n/, '<br/>').html_safe %></p>
 <p class="text-center"><strong>Rules:</strong></p>
 <p class="text-center"><%= @challenge.rules %></p>
 <p class="text-center"><strong>At Stake:</strong></p>
