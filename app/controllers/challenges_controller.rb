@@ -83,7 +83,7 @@ class ChallengesController < ApplicationController
   def voting
     @winner = @members.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:voted_id]] += 1 }
     @winner = @winner.key(@winner.values.max)
-    @winner = User.find(@winner)
+    @winner = User.find(@winner) if @winner != nil
   end
 
   def send_vote
