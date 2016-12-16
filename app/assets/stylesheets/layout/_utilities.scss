@@ -98,6 +98,15 @@ body {
 }
 
 
+.img-with-text {
+    text-align: justify;
+}
+
+.image_profile {
+    display: block;
+    margin: 0 auto;
+  }
+
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
@@ -121,4 +130,5 @@ body {
 }
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+
 }
