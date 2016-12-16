@@ -9,11 +9,12 @@
           <%end%>
           <p class='text-center'>
             <span style="margin-right: 15px;">
+            <%= link_to 'Back', :back, class: 'btn btn-default' %>
             <%= link_to_add_association 'Add', f, :invites, class: 'btn btn-primary' %>
-            </span>
             <%#= f.button :submit,  'Send', class: 'btn btn-success'  %>
             <%= link_to "Send", challenge_path(@challenge), data: { confirm: "Your invitation will be sent" },
                         class: 'btn btn-success'%>
+            </span>
           </p>
         <%end%>
       </div>
