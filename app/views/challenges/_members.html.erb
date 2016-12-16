@@ -4,8 +4,12 @@
       <div class="text-center">
         <% @members.each do |member| %>
           <% if member.challenge_id == @challenge.id %>
-            <%= generate_profile_image(member.user) %>
-            <%= member.user.name %>
+            <div class="img-with-text">
+              <span class="image_profile">
+                <%= generate_profile_image(member.user) %>
+              </span>
+              <%= member.user.name %>
+            </div>
           <%end%>
         <%end%>
       </div>
