@@ -24,7 +24,7 @@
           <div class ="col-sm-2 photo-margin text-center">
             <%= generate_profile_photo(member.user) %>
             <br><%= member.user.name %>
-            <br>Votes <%= ( @winner[member.user_id] * 100.0 / @members.where('voted_id IS NOT NULL').count ).round(2) %>%
+            <br>Votes <%= ( @winner2[member.user_id] * 100.0 / @members.where('voted_id IS NOT NULL').count ).round(2) %>%
           </div>
         <% end %>
       <% end %>
