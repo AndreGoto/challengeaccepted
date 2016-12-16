@@ -64,10 +64,10 @@
               <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
             <% end %>
           </li>
-        <% else %>
           <li>
             <%=link_to raw('<i class="fa fa-search"></i> Explore'), explore_path, class: "navbar-wagon-item navbar-wagon-link" %>
           </li>
+        <% else %>
           <li><%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
         <% end %>
         <li>
