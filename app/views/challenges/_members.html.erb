@@ -1,11 +1,13 @@
 <div class="cotainer">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-      <div class="text-center">
+      <div>
         <% @members.each do |member| %>
           <% if member.challenge_id == @challenge.id %>
-            <%= generate_profile_image(member.user) %>
-            <%= member.user.name %>
+            <div class="member">
+              <%= generate_profile_image(member.user) %>
+              <%= member.user.name %>
+            </div>
           <%end%>
         <%end%>
       </div>

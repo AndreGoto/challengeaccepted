@@ -12,7 +12,7 @@
   padding: 15px 0;
   color: white;
   border: none;
-  font-family: $header-font;
+  font-family: $base-font;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -112,4 +112,16 @@
 .tab-container{
   height: 400px;
   background-color: #F7F7F7;
+}
+
+.member {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: white;
+  padding: 5px 20px;
+  border-radius: 2px;
+  width: 100%;
+  .avatar {
+    margin-right: 5px;
+  }
 }

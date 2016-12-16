@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :challenge_requests, only: [:index, :destroy]
   root to: 'pages#home'
   get 'dashboard', to: "dashboard#index"
+  get 'explore', to: "challenges#index"
 end
