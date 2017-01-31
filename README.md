@@ -1,6 +1,6 @@
-"Challenge Accepted" is a open-source website and the objective is to let the friends to challenge his buddies in any kind of funny activity and share experiences.
+"Challenge Accepted" is an open-source website and the objective is to let people share experiences, letting friends challenge buddies in any kind of activity, be that a social challenge, or just for fun, or for raising awareness, or a sports one or any other kind of challenge.
 
-This website created using Ruby on Rails framework as part of our portfolio in [Le Wagon coding bootcamp](https://www.lewagon.com) and it is the final project during the last two weeks of condig.
+This website was created using Ruby on Rails framework as part of our portfolio in [Le Wagon coding bootcamp](https://www.lewagon.com) and it is the final project during the last two weeks of coding.
 
 It can be accessed here:
 
